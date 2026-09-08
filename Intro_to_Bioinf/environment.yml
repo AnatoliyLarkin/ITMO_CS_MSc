@@ -1,0 +1,23 @@
+name: intro_to_bioinf
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python
+  - bwa
+  - samtools
+  - bedtools
+  - tmux
+  - snakemake
+  - jupyter
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - ipython
+  # Additional useful packages for bioinformatics and Jupyter
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scipy
