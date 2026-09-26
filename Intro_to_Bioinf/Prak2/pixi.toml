@@ -1,0 +1,67 @@
+[workspace]
+channels = ["conda-forge", "bioconda"]
+name = "intro_to_bioinf"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+# --- R and Jupyter (unchanged) ---
+r-base      = "*"
+r-irkernel  = "*"
+jupyterlab  = "*"
+ipykernel   = "*"
+
+# --- Python core ---
+python      = "*"
+polars      = "*"          # DataFrame library from conda-forge
+altair      = "*"          # Declarative visualization library from conda-forge
+
+# --- R packages (unchanged) ---
+r-tidyverse    = "*"
+r-ggplot2      = "*"
+r-devtools     = "*"
+r-scales       = "*"
+r-viridis      = "*"
+r-dplyr        = "*"
+r-matrix       = "*"
+r-plot3d       = "*"
+r-terra        = "*"
+r-raster       = "*"
+r-jpeg         = "*"
+r-interp       = "*"
+r-maps         = "*"
+r-latticeextra = "*"
+r-mapdata      = "*"
+r-biclust      = "*"
+r-fnn          = "*"
+r-igraph       = "*"
+r-rarpack      = "*"
+r-pak          = "*"
+r-reticulate   = "*"
+r-ppcor        = "*"
+
+r-biocmanager = ">=1.30.27,<2"
+
+# --- Core alignment & BAM tools (bioconda) ---
+bwa        = "*"    # Burrows-Wheeler Aligner
+bwa-mem2   = "*"    # Faster successor to BWA (optional, but commonly used)
+samtools   = "*"    # SAM/BAM/CRAM manipulation
+bamtools   = "*"    # C++ API & CLI toolkit for BAM data
+
+# --- Variant calling (bioconda) ---
+gatk4      = "*"    # Genome Analysis Toolkit v4
+
+# --- Default genomics suite (common downstream tools) ---
+fastqc     = "*"    # Quality control for sequencing reads
+fastp      = "*"    # Ultra-fast FASTQ preprocessor
+bowtie2    = "*"    # Fast gapped read aligner
+bedtools   = "*"    # Genome arithmetic toolkit
+bcftools   = "*"    # VCF/BCF manipulation utilities
+minimap2   = "*"    # Versatile pairwise aligner for long reads
+picard     = "*"    # Java tools for NGS BAM processing
+multiqc    = "*"    # Aggregate bioinformatics analysis reports
+
+[tasks]
+jupyter = "jupyter lab --no-browser"
+rstudio = "rstudio"
+r_test = "R"
