@@ -1,0 +1,29 @@
+[workspace]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+channel-priority = "flexible"
+
+[dependencies]
+ensembl-vep = "*"
+
+r-base      = "*"
+r-irkernel  = "*"
+jupyterlab  = "*"
+ipykernel   = "*"
+
+
+[tasks]
+jupyter = "jupyter lab --no-browser"
+
+# Downloads the target files via short, readable path segments
+setup-vep-cache = """
+mkdir -p vep_data
+HOST="https://ensembl.org"
+CACHE_PATH="variation/indexed_vep_cache/saccharomyces_cerevisiae_vep_110_R64.tar.gz"
+MAP_PATH="assembly_mapping/saccharomyces_cerevisiae/GCF_000146045.2_to_R64.txt"
+
+curl -L -o vep_data/cache.tar.gz "$HOST/$CACHE_PATH"
+tar -xzf vep_data/cache.tar.gz -C vep_data/
+curl -L -o vep_data/chrom_synonyms.txt "$HOST/$MAP_PATH"
+"""

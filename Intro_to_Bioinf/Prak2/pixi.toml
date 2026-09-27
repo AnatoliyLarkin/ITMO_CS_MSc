@@ -11,8 +11,9 @@ r-irkernel  = "*"
 jupyterlab  = "*"
 ipykernel   = "*"
 
-# --- Python core ---
+# --- Python core & Java Runtime ---
 python      = "*"
+openjdk     = ">=21"       # Required to resolve Java runtime errors for snpeff
 polars      = "*"          # DataFrame library from conda-forge
 altair      = "*"          # Declarative visualization library from conda-forge
 
