@@ -60,7 +60,7 @@ bcftools   = "*"    # VCF/BCF manipulation utilities
 minimap2   = "*"    # Versatile pairwise aligner for long reads
 picard     = "*"    # Java tools for NGS BAM processing
 multiqc    = "*"    # Aggregate bioinformatics analysis reports
-
+mosdepth   = "*"
 [tasks]
 jupyter = "jupyter lab --no-browser"
 rstudio = "rstudio"
