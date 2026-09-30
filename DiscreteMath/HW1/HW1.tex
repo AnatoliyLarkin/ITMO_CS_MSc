@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{Discrete Math HW1}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+    \item Consider two integers \(a, b \in \mathbb{Z}\). Prove that if \(ab\) and \(a + b\) are even, then both \(a\) and \(b\) are even.
+
+    Proof:
+
+    Suppose that statement if wrong. Then, if $ab$ and $a+b$ are even, at least one of $a$ and $b$ is odd
+
+    Consider $a = 2k+1$ and $b = 2p+1$, $p,k \in \mathbb{Z}$
+
+    $ab$ = $(2k+1)(2p+1)$ = $(4kp + 2k + 2p + 1)$ = $2(2kp + k + p) + 1$, which is odd $\implies$ contradiction
+
+    Consider $a = 2k+1$, $b = 2p$, $p,k \in \mathbb{Z}$
+    $a+b$ = $2k + 1 + 2p$ = $2(k+p) + 1$, which is odd $\implies$ contradiction
+
+    Consider $a = 2k$, $b = 2p+1$, $p,k$ \in \mathbb{Z}$$
+    $a+b$ = $2k + 2p + 1$ = $2(k+p) + 1$, which is odd $\implies$ contradiction
+
+    Then, if $ab$ and $a+b$, a,b  \in \mathbb{Z}$, are even, both $a$, $b$ are even
+
+    \item 
+    Prove either the following statement or its negation:
+    \[
+    \forall n \in \mathbb{N} : (n^2 - n + 41)
+    \] is a prime number
+
+    Disproof:
+    
+Consider $n = 41$. Then $(n^2 - n + 41) = 1681$ is not prime, as $1681/41 = 41$. Then statement is wrong.
+
+
+    \item 10 students solved 35 tasks. Each task is solved by one student. It is known, that there is at least one student who solved one problem, one student who solved two problems and one student who solved three problems. Prove, that at least one student solved five or more tasks.
+
+    Proof:
+
+    Consider 1st student solved exactly 1 problem, 2nd student solved exactly 2 problems, 3rd student solved exactly 3 problems. There are 29 problems and 7 students left.
+
+    Suppose for contradiction that no student solved 5 or more tasks. This means every student solved at most 4 tasks. We already know three distinct students solved exactly 1, 2, and 3 tasks. The remaining 7 students can solve at most 4 tasks each.
+    The maximum total tasks solved would be:
+    $1 + 2 + 3 + (7 × 4) = 6 + 28 = 34$ tasks
+    This contradicts the given fact that 35 tasks were solved. Thus, our assumption is false, and at least one student must have solved 5 or more tasks.
+
+
+    \item Let’s select $n + 1$ positive integer numbers. Prove, that at least two of them
+have the same reminder after the division by $n$.
+
+    Proof:
+
+    Consider $n+1$ positive integer numbers: $a, b, c, ... , z$
+
+    Each of them can be represented as:
+
+    $a = nx_1 + r_1$
+    
+    $b = nx_2 + r_2$ 
+    
+    ...
+    
+    $z = nx_n_+_1 + r_n_+_1$
+
+
+    $r_x$ can take values from 0 to n-1, r_x \in \mathbb{N}
+    
+    In total, there are $n$ possible unique value for $r_x$, while there are n+1 possible unique numbers.
+
+    According to Dirichlet principle, $(n+1) - n = 1$ numbers cannot uniquely be assigned to $n$ remainders and there would be at least one remainder will be duplicated by dividing 2 distinct numbers by $n$. 
+    
+    Thus the statement holds
+
+
+
+    \item For which values of n can weights of $1, 2, . . . , n$ be divided into three groups of equal total weight?
+
+    The sum of array $1..n$ can be represented as $S = \frac{n(n+1)}{2}$. To divide the array to 3 equal groups, S must be divisible by 3. Since 2 is a prime number, n(n+1) must be divisible by 3, which is only true if $n \equiv 0 (mod 3)$ or $n \equiv 2 (mod 3)$
+
+    Also each of 3 group must sum exactly to $\frac{S}{3}$, which is clearly impossible for $n < 5$, as target weight of group is lesser than n
+
+    Then consider 4 first valid n as base cases:
+
+    n = 5 \implies $\{5\}\{1,4\}\{2,3\}$
+    
+    n = 6 \implies $\{6,1\}\{2,5\}\{3,4\}$
+
+    n = 8 \implies $\{4,8\}\{5,7\}\{1,2,3,6\}$
+
+    n = 9 \implies $\{6,9\}\{7,8\}\{1,2,3,4,5\}$
+
+    Assume that for some valid integer n, the set of weights \(\{1, 2, \dots, n\}\) can already be partitioned into three groups of equal weight (\(G_1, G_2, G_3\)), where each group sums to W = $\frac{n(n+1)}{6}$. Let's add 6 new weights \{n+1,\;n+2,\;n+3,\;n+4,\;n+5,\;n+6\} to the initial set. New weight can always be grouped in 3 groups of equal weight:
+
+    (n+1) + (n+6) = 2n+7
+    
+    (n+2) + (n+5) = 2n+7
+    
+    (n+3) + (n+4) = 2n+7
+
+    Each of these groups can be added to the set of weights \(\{1, 2, \dots, n\}\) such that weight $x = W + 2n + 7$. So if solution exists for n, it must exist for n+6, if $n >= 5$ and if $n \equiv 0 (mod 3)$ or $n \equiv 2 (mod 3)$
+
+    Since the induction step jumps by +6, the 4 base cases are sufficient to cover all valid  remainders when dividing n by 6
+    
+    \(n \equiv 0 \pmod 6\): Covered by the \(n=6\) base case (generates \(12, 18, 24, \dots\))
+    
+    \(n \equiv 1 \pmod 6\): Invalid (violates \(n \equiv 0\) or \(2 \pmod 3\))
+
+    \(n \equiv 2 \pmod 6\): Covered by the \(n=8\) base case (generates \(14, 20, 26, \dots\))
+    
+    \(n \equiv 3 \pmod 6\): Covered by the \(n=9\) base case (generates \(15, 21, 27, \dots\))
+    
+    \(n \equiv 4 \pmod 6\): Invalid (violates \(n \equiv 0\) or \(2 \pmod 3\))
+    
+    \(n \equiv 5 \pmod 6\): Covered by the \(n=5\) base case (generates \(11, 17, 23, \dots\))
+
+    
+
+
+    \item Prove, that if we take the board of size $2^n$x$2^n$ and cut out any cell, the resulting board can be covered with 3-piece figures.
+
+    Proof:
+
+    Base Case:
+    Square of 2x2 with one cell cut out can be covered with exactly one L-shaped 3-piece figure.
+
+    Inductive hypothesis: square of $2^k^-^1$x $2^k^-^1$ with one cell cut out can be perfectly covered with L-shaped 3 piece figures
+
+    Induction: Consider square of $2^k$ x $2^k$ with one cell cut out. In can be split into 4 squares of $2^k^-^1$x $2^k^-^1$. Let square 1 have one cell cut out. Then this square can be perfectly covered with L-shaped 3 piece figures. 
+
+    For the rest 3 squares consider a single tile, placed at the center, such that every tile of L-shaped figure belongs to distint squares. Then there are 3 squares of $2^k^-^1$x $2^k^-^1$, each have 1 tile cut out. According to inductive hypothesis, each square can be perfectly covered with L-shaped 3 piece figures
+
+    Therefore the initial statement holds.
+
+    
+
+
+\end{enumerate}
+
+\end{document}
