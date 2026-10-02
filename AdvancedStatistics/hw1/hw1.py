@@ -15,9 +15,9 @@ def _():
     import altair as alt
     import seaborn as sns
     import random
+    from scipy.stats import norm
 
-
-    return iqr, mo, np, pd, plt, shapiro, sns
+    return iqr, mo, norm, np, pd, plt, shapiro, sns
 
 
 @app.cell(hide_code=True)
@@ -125,13 +125,13 @@ def _(df_healthy, shapiro):
     for col in columns_to_check:
         if col in df_healthy.columns:
             data = df_healthy[col].dropna()
-        
+    
 
             stat, p_value = shapiro(data)
-        
+    
 
             is_normal = "Normally Distributed" if p_value > 0.05 else "NOT Normally Distributed"
-        
+    
             print(f"{col:<10} | p-value: {p_value:.5f} | Result: {is_normal}")
         else:
             print(f"{col:<10} | Column not found in DataFrame.")
@@ -188,10 +188,15 @@ def _(mo):
 def _(df_healthy, np, plt, sns):
     folate = np.array(df_healthy['FOLATE'])
     wbc = np.array(df_healthy['WBC'])
-
+    threshold = 12
     sns.histplot(folate)
+    plt.axvline(threshold, color = 'red', label = 'Threshold, 12 original units')
+    plt.legend()
     plt.title("Folate Histplot")
-    return folate, wbc
+
+
+
+    return folate, threshold, wbc
 
 
 @app.cell(hide_code=True)
@@ -203,9 +208,13 @@ def _(mo):
 
 
 @app.cell
-def _(folate, plt, sns):
+def _(folate, plt, sns, threshold):
     sns.ecdfplot(folate)
     plt.title('Folate ECDF plot')
+    plt.axvline(threshold, color = 'red', label = 'Threshold, 12 original units')
+    plt.legend()
+
+
     return
 
 
@@ -218,10 +227,24 @@ def _(mo):
 
 
 @app.cell
+def _(folate, np, sns, threshold):
+    ax = sns.ecdfplot(folate)
+    x_data, y_data = ax.lines[0].get_data()
+    idx = np.searchsorted(x_data, threshold)
+    y_val = y_data[idx]
+
+    print(f'{round(float(y_val),3)} of datapoints have lower value than selected thresold of {threshold} original units')
+    return
+
+
+@app.cell
 def _(plt, sns, wbc):
     sns.histplot(wbc)
+    threshold_2 = 5
+    plt.axvline(threshold_2, color = 'green', label = 'Threshold, 5 original units')
+    plt.legend()
     plt.title("WBC Histplot")
-    return
+    return (threshold_2,)
 
 
 @app.cell(hide_code=True)
@@ -233,9 +256,22 @@ def _(mo):
 
 
 @app.cell
-def _(plt, sns, wbc):
+def _(plt, sns, threshold_2, wbc):
     sns.ecdfplot(wbc)
+    plt.axvline(threshold_2, color = 'green', label = 'Threshold, 5 original units')
+    plt.legend()
     plt.title("WBC ECDF plot")
+    return
+
+
+@app.cell
+def _(np, sns, threshold_2, wbc):
+    ax_1 = sns.ecdfplot(wbc)
+    x_data_1, y_data_1 = ax_1.lines[0].get_data()
+    idx_1 = np.searchsorted(x_data_1, threshold_2)
+    y_val_1 = y_data_1[idx_1]
+
+    print(f'{round(float(y_val_1),3)} of datapoints have lower value than selected thresold of {threshold_2} original units')
     return
 
 
@@ -286,7 +322,7 @@ def _(df_healthy, iqr, np, pd):
             'SDTSD': sdtsd,
             'RBC': rbc
         }
-    
+
         return mapping
 
 
@@ -320,7 +356,7 @@ def _(iqr, mapping, names, np, pd):
         trimmed_arr = arr[k:-k]
         return(trimmed_arr)
 
-    
+
     mapping_trimmed = {i: trim(mapping[i]) for i in mapping}
 
     means_trimmed = np.mean(list(mapping_trimmed.values()), axis = 1)
@@ -390,7 +426,7 @@ def _(df_healthy, np):
     print(maxdiff_feature, maxdiff)
     maxdiff_feature_mean = np.mean(df_healthy[maxdiff_feature])
     maxdiff_feature_median = np.median(df_healthy[maxdiff_feature])
-    
+
     return maxdiff_feature, maxdiff_feature_mean, maxdiff_feature_median
 
 
@@ -428,6 +464,9 @@ def _(mo):
     10, 20 and 40 bins. Which peaks persist? Explain how the binning affects your conclusions and
     suggest a possible explanation for the observed multimodality, without presenting it as an
     established cause.
+
+
+    Mode is the most frequent statistic in array. The probability of any exact continuous value occurring more than once is zero. To compute mode, some workarounds exist, such as binning, but there is also tradeoff in choosing smaller bin size (risk of getting high random peaks) or bigger (risk to lose precision). Also continuous data can be multimodal so relying on a single mode one can calculate can be misleading.
     """)
     return
 
@@ -461,7 +500,7 @@ def _(df_healthy, features, plt, sns):
             color="#1f77b4", 
             alpha=0.5
         )
-    
+
         axes[i].set_title(f'{feature} Distribution', fontsize=12, fontweight='bold')
         axes[i].set_xlabel('Value')
         axes[i].set_ylabel('Density')
@@ -489,18 +528,18 @@ def _(df_healthy, plt, sns):
         for candidate in candidates:
             fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=True)
             fig.suptitle(f"Histogram Bin Comparison for: {candidate}", fontsize=16, fontweight='bold')
-        
+    
             data = df_healthy[candidate]
-        
+    
             for ax, bins in zip(axes, bin_sizes):
                 sns.histplot(data, bins=bins, ax=ax, kde=True, color="skyblue")
-            
+        
                 # Set titles and labels for scannability
                 ax.set_title(f"{bins} Bins", fontsize=12)
                 ax.set_xlabel("Value")
                 if ax == axes[0]:
                     ax.set_ylabel("Frequency")
-                
+            
             plt.tight_layout()
         return plt.show()
 
@@ -690,48 +729,100 @@ def _(mo):
     return
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ##a
-    """)
-    return
-
-
 @app.cell
-def _(np, sns):
+def _(np, plt, sns):
+
+ 
     rng = np.random.default_rng(seed=42)
+ 
+    observations = rng.exponential(scale=10, size=10000)
+ 
+    plt.figure(figsize=(10, 6))
+    sns.histplot(observations, kde=True)
+    plt.axvline(x=10, color='red', linestyle='--', linewidth=2, label='Theoretical mean (10)')
+    plt.title('Exponential distribution, scale = 10, 10000 observations')
+    plt.xlabel('Waiting time, min')
+    plt.legend()
+    plt.show()
+ 
+ 
 
-    observations = np.random.exponential(scale=10, size=1000)
-    sns.histplot(observations, kde = True)
+
+    return (rng,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Shape - strongly right-skewed, highest density is at 0 and then it decays exponentially, with a long right tail. Not symmetric at all, mean (~10), looks like textbook exponential distribution
+    """)
+    return
+
+
+@app.cell
+def _(norm, np, plt, rng, sns):
+
+    scale_parameter = 10.0
+    num_simulations = 2000
+    sample_sizes = [5, 30, 100]
+ 
+    sample_means = {}
+ 
+    for _n in sample_sizes:
+        _samples = rng.exponential(scale=scale_parameter, size=(num_simulations, _n))
+        sample_means[_n] = _samples.mean(axis=1)
+ 
+    for _n in sample_sizes:
+        print(f"Sample size n={_n:3}: Means vector shape = {sample_means[_n].shape}")
+
+ 
+    x_min = min(sample_means[_n].min() for _n in sample_sizes)
+    x_max = max(sample_means[_n].max() for _n in sample_sizes)
+    x_grid = np.linspace(x_min, x_max, 300)
+ 
+    fig_means, axes_means = plt.subplots(1, 3, figsize=(20, 6), sharex=True, sharey=True)
+ 
+    for _ax, _n in zip(axes_means, sample_sizes):
+        sns.histplot(sample_means[_n], stat="density", ax=_ax)
+        _ax.plot(x_grid, norm.pdf(x_grid, loc=10, scale=10 / np.sqrt(_n)), color="green", linewidth=2, label="Normal, mean = 10, std = 10/sqrt(n)")
+        _ax.axvline(x=10, color='red', linestyle='--', linewidth=2, label='Theoretical mean (10)')
+        _ax.set_xlim(x_min, x_max)
+        _ax.set_title(f'Distribution of means of sample size {_n}')
+        _ax.set_xlabel('Sample mean, min')
+        _ax.legend()
+ 
+    plt.tight_layout()
+    plt.show()
+ 
+
+ 
+    for _n in sample_sizes:
+        _practical_mean = np.round(np.mean(sample_means[_n]), 5)
+        _practical_std = np.round(np.std(sample_means[_n]), 5)
+        _theoretical_std = np.round(10 / np.sqrt(_n), 5)
+ 
+        print(f'Sample size = {_n}')
+        print(f'Mean of sample means = {_practical_mean}, theoretical mean is 10')
+        print(f'Std of sample means = {_practical_std}, theoretical std is {_theoretical_std}')
+        print('=' * 100 + '\n')
+ 
+ 
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Right-skewed curve, looks like textbook exponential distribution
+    Means of sample means are very close to 10 for all n, and stds of sample means are very close to 10/sqrt(n) (small difference is due to randomness of 2000 repetitions)
+
+
+
+    With higher n the spread (std) decreases as 10/sqrt(n), so sample means concentrate tighter around 10. The shape changes from right-skewed for n = 5 (still remembers the exponential) to almost symmetric bell for n = 30 and n = 100, and normal overlay fits better and better. The sample mean is the quantity that becomes approximately normally distributed as n grows.
+
+    Increasing n does not make the original waiting-time distribution normal. Single observations still come from exponential distribution with scale 10 (for n = 1 sample mean is just the observation itself, so it stays exponential). CLT is about the distribution of means, not about the population.
+
+    Sample size n defines the shape and spread of the sampling distribution: larger n gives more normal shape and smaller std. Number of repetitions (2000) is just the number of sample means we draw to look at this distribution, it doesn't change the true sampling distribution, only how smooth the histogram is and how close the empirical mean and std are to the theoretical ones.
     """)
-    return
-
-
-@app.cell
-def _(np):
-    scale_parameter = 10.0  
-    num_simulations = 2000  
-    sample_sizes = [5, 30, 100]
-
-    data_samples = {}
-    sample_means = {}
-
-    for n in sample_sizes:
-        samples = np.random.exponential(scale=scale_parameter, size=(num_simulations, n))
-        data_samples[n] = samples
-        sample_means[n] = samples.mean(axis=1)
-
-
-    for n in sample_sizes:
-        print(f"Sample size n={n:3}: Generated matrix shape = {data_samples[n].shape}, Means vector shape = {sample_means[n].shape}")
     return
 
 
