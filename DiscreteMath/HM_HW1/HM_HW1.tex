@@ -1,0 +1,266 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\title{Higher Math Elective HW1}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+    \item Using the truth tables we’ve discussed in class, evaluate the following expressions in classical Boolean logic with two truth values \(B = \{T, F\}\):
+
+    \begin{enumerate}
+        \item[(a)] \((T \lor F) \Rightarrow F = F\);
+        \item[(b)] \((T \lor F) \Rightarrow T = T\);
+        \item[(c)] \((T \land F) \Rightarrow F = T\);
+        \item[(d)] \((T \land F) \Rightarrow F = T\);
+        \item[(e)] \(T \lor (F \Rightarrow F) = T \lor T = T\);
+        \item[(f)] \(T \lor (F \Rightarrow T) = T \lor T = T\);
+        \item[(g)] \(T \land (F \Rightarrow F) = T \land T = T\);
+        \item[(h)] \(T \land (F \Rightarrow F) = T \land T = T\);
+        \item[(i)] \((F \lor ((F \Rightarrow T) \Rightarrow T)) \Leftrightarrow (((T \Rightarrow F) \Rightarrow T) \land T)\). \\
+        \(F \lor T \Leftrightarrow T \land T\) \\
+        \(T \Leftrightarrow T = T\)
+    \end{enumerate}
+
+    \item Construct the truth tables for the following predicates:
+
+    \begin{enumerate}
+        \item[(a)] \(P(x) = x \lor \neg x\)
+        \begin{center}
+        \begin{tabular}{c|c}
+        \(x\) & \(x \lor \neg x\) \\
+        \hline
+        T & T \\
+        F & T \\
+        \end{tabular}
+        \end{center}
+
+        \item[(b)] \(P(x) = x \Rightarrow \neg x\)
+        \begin{center}
+        \begin{tabular}{c|c}
+        \(x\) & \(x \Rightarrow \neg x\) \\
+        \hline
+        T & F \\
+        F & T \\
+        \end{tabular}
+        \end{center}
+
+        \item[(c)] \(P(x, y) = x \Rightarrow \neg y\)
+        \begin{center}
+        \begin{tabular}{cc|c}
+        \(x\) & \(y\) & \(x \Rightarrow \neg y\) \\
+        \hline
+        T & T & F \\
+        T & F & T \\
+        F & T & T \\
+        F & F & T \\
+        \end{tabular}
+        \end{center}
+
+        \item[(d)] \(P(x, y) = y \Rightarrow \neg x\)
+        \begin{center}
+        \begin{tabular}{cc|c}
+        \(x\) & \(y\) & \(y \Rightarrow \neg x\) \\
+        \hline
+        T & T & F \\
+        T & F & T \\
+        F & T & T \\
+        F & F & T \\
+        \end{tabular}
+        \end{center}
+
+        \item[(e)] \(P(x, y, z) = (x \iff y) \land (y \iff z)\)
+        \begin{center}
+        \begin{tabular}{ccc|c}
+        \(x\) & \(y\) & \(z\) & \(P(x, y, z)\) \\
+        \hline
+        T & F & F & F \\
+        T & F & T & F \\
+        T & T & F & F \\
+        T & T & T & T \\
+        F & F & F & T \\
+        F & F & T & F \\
+        F & T & F & F \\
+        F & T & T & F \\
+        \end{tabular}
+        \end{center}
+
+        \item[(f)] \(P(x, y, z) = (x \iff y) \land (y \iff z)\)
+        \begin{center}
+        \begin{tabular}{ccc|c}
+        \(x\) & \(y\) & \(z\) & \(P(x, y, z)\) \\
+        \hline
+        T & F & F & F \\
+        T & F & T & F \\
+        T & T & F & F \\
+        T & T & T & T \\
+        F & F & F & T \\
+        F & F & T & F \\
+        F & T & F & F \\
+        F & T & T & F \\
+        \end{tabular}
+        \end{center}
+
+        \item[(g)] \(P(x, y, z) = (x \iff y) \land (y \iff z) \land (y \neq z)\)
+        \begin{center}
+        \begin{tabular}{ccc|c}
+        \(x\) & \(y\) & \(z\) & \(P(x, y, z)\) \\
+        \hline
+        T & F & F & F \\
+        T & F & T & F \\
+        T & T & F & F \\
+        T & T & T & F \\
+        F & F & F & F \\
+        F & F & T & F \\
+        F & T & F & F \\
+        F & T & T & F \\
+        \end{tabular}
+        \end{center}
+
+        \item[(h)] \(P(x, y, z) = (x \neq y) \lor (y \neq z)\)
+        \begin{center}
+        \begin{tabular}{ccc|c}
+        \(x\) & \(y\) & \(z\) & \(P(x, y, z)\) \\
+        \hline
+        T & F & F & T \\
+        T & F & T & T \\
+        T & T & F & T \\
+        T & T & T & F \\
+        F & F & F & F \\
+        F & F & T & T \\
+        F & T & F & T \\
+        F & T & T & T \\
+        \end{tabular}
+        \end{center}
+    \end{enumerate}
+
+
+
+    \item \textbf{Theorem 1} (De Morgan's ``laws''). \textit{Given two statements \(P\) and \(Q\), the following equalities hold:}
+\begin{gather*}
+    \neg(P \lor Q) \equiv (\neg P) \land (\neg Q), \\
+    \neg(P \land Q) \equiv (\neg P) \lor (\neg Q).
+\end{gather*}
+
+    Proof. It’s your task to prove this.
+
+    Will use truth table for all possible values of P,T to prove the statements
+
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \(P\) & \(Q\) & \(\neg(P \lor Q)\) & \((\neg P) \land (\neg Q)\) & \(\neg(P \land Q)\) & \((\neg P) \lor (\neg Q)\) \\
+    \hline
+    T & T & F & F & F & F \\
+    \hline
+    T & F & F & F & T & T \\
+    \hline
+    F & T & F & F & T & T \\
+    \hline
+    F & F & T & T & T & T \\
+    \hline
+    \end{tabular}
+
+    Thus, for P = \{T, F\} and Q = \{T, F\}, both statement hold
+
+
+\item {Theorem 2} (De Morgan's ``laws'' for sets, universal form). \textit{Let \(U\) be a universe. For any sets \(A, B \subseteq U\) (where \(^c\) denotes complement relative to \(U\)),}
+\begin{align}
+(A \cup B)^c &= A^c \cap B^c, \\
+(A \cap B)^c &= A^c \cup B^c.
+\end{align}
+\noindent \textbf{Proof.} Using Theorem 1.
+
+LHS1. Suppose \(x \in (A \cup B)^c\). Then need to prove that \((A \cup B)^c \subseteq A^c \cap B^c\).
+
+Proof:
+\[
+x \in (A \cup B)^c
+\Rightarrow \neg(x \in A \cup B)
+\Rightarrow \neg(x \in A \lor x \in B)
+\overset{\text{Theorem 1}}{\Rightarrow} \neg(x \in A) \land \neg(x \in B)
+\Rightarrow x \in A^c \cap B^c.
+\]
+Proven.
+
+RHS1. Suppose \(x \in A^c \cap B^c\). Then need to prove that \(A^c \cap B^c \subseteq (A \cup B)^c\).
+
+Proof:
+\[
+x \in A^c \cap B^c
+\Rightarrow \neg(x \in A) \land \neg(x \in B)
+\overset{\text{Theorem 1}}{\Rightarrow} \neg(x \in A \lor x \in B)
+\Rightarrow \neg(x \in A \cup B)
+\Rightarrow x \in (A \cup B)^c.
+\]
+Proven.
+
+Then statement \((A \cup B)^c = A^c \cap B^c\) holds.
+
+LHS2. Suppose \(x \in (A \cap B)^c\). Then need to prove that \((A \cap B)^c \subseteq A^c \cup B^c\).
+
+Proof:
+\[
+x \in (A \cap B)^c
+\Rightarrow \neg(x \in A \cap B)
+\Rightarrow \neg(x \in A \land x \in B)
+\overset{\text{Theorem 1}}{\Rightarrow} \neg(x \in A) \lor \neg(x \in B)
+\Rightarrow x \in A^c \cup B^c.
+\]
+Proven.
+
+RHS2. Suppose \(x \in A^c \cup B^c\). Then need to prove that \(A^c \cup B^c \subseteq (A \cap B)^c\).
+
+Proof:
+\[
+x \in A^c \cup B^c
+\Rightarrow \neg(x \in A) \lor \neg(x \in B)
+\overset{\text{Theorem 1}}{\Rightarrow} \neg(x \in A \land x \in B)
+\Rightarrow \neg(x \in A \cap B)
+\Rightarrow x \in (A \cap B)^c.
+\]
+Proven.
+
+Then statement \((A \cap B)^c = A^c \cup B^c\) also holds.
+
+
+\item \textbf{Theorem 3} (De Morgan's ``laws'' for sets, general form). \textit{For any sets \(A, B, C\),}
+\begin{align*}
+A \setminus (B \cup C) &= (A \setminus B) \cap (A \setminus C), \\
+A \setminus (B \cap C) &= (A \setminus B) \cup (A \setminus C).
+\end{align*}
+
+\textit{Proof.} Prove using Theorem 1.
+
+LHS1.
+Let $\Phi x \in A  \backslash (B \cup C)$.
+Then $x \in A \land x \not\in (B \cup C)$ \Rightarrow $x \in A \land x \not\in B \land x \not\in C$ \Rightarrow $x \in (A \backslash B) \cap (A \backslash C)$. Proven
+
+RHS1.
+Let $\Phi x \in (A\backslash B) \cap (A \backslash C)$. Then $(x \in A \land x \not\in B) \land (x \in A \land x \not\in C)$ \Rightarrow $x \in A \land x \not\in B \land x \not\in C$ \Rightarrow $x \in A \land x \not\in (B \cup C)$ \Rightarrow $x \in (A \backslash (B \cup C))$. Proven
+
+Then statement $A \setminus (B \cup C) &= (A \setminus B) \cap (A \setminus C)$ holds.
+
+LHS2.
+Let $\Phi x \in (A \backslash (B \cap C))$. Then $x \in A \land x \not\in (B \cap C)$ \Rightarrow $x \in A \land (x \not\in B \lor x \not\in C)$ \Rightarrow $(x \in A \land x \not\in B) \lor (x \in A \land x \not\in C)$ \Rightarrow $x \in ((A \backslash B) \cup (A \backslash C))$. Proven
+
+RHS2.
+
+Let $\Phi x \in ((A \backslash B) \cup (A \backslash C))$. Then $(x \in A \land x \not\in B) \lor (x \in A \land x \not\in C)$ \Rightarrow $x \in A \land (x \not\in B \lor x \not\in C)$ \Rightarrow $x \in A \land x \not\in (B \cap C)$ \Rightarrow $x \in (A \backslash (B \cap C))$. Proven
+
+Then statement $A \setminus (B \cap C) &= (A \setminus B) \cup (A \setminus C)$ also holds.
+
+
+\item \textbf{Definition 4.} \textit{Symmetrical difference} of two sets \(A\) and \(B\) is defined as a set of all elements that belong exactly to one of these two sets and is denoted as \(A \Delta B\).
+
+\textbf{Your task:} Express the symmetrical difference in at least two different ways using all previously-defined operations \((\cup, \cap, \setminus)\). Also define it using abstraction method (it will look like \(A \Delta B = \{x \mid \dots \}\)).
+
+$A \Delta B$ = $(A\backslash B) \cup (B \backslash A)$ = $(A \cup B)\backslash (A \cap B)$ = $\{x | (x \in A \land x \not\in B) \lor (x \not\in A \land x \in B)\}$
+
+
+\end{enumerate}
+
+\end{document}\end{document}
