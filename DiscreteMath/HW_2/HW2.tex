@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW2}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+    \item \textit{Geometric progression} --- a sequence of non-zero numbers $b_1, b_2, b_3, \dots$, where each term is found by multiplying the previous one by constant number $q$: $b_{i+1} = b_i \cdot q$. To define a sequence it is sufficient to set the first element $b_1$ and the common ratio $q$.
+    
+    Let $S_n = b_1 + b_2 + b_3 + \dots + b_n$, where $n \in \mathbb{N}$ and $b_{i+1} = b_i \cdot q$ with $q \neq 1$.
+    
+    \medskip
+    We can express each term in terms of the first element $b_1$ and the common ratio $q$:
+    \[
+    S_n = b_1 + b_1q + b_1q^2 + \dots + b_1q^{n-1} = b_1(q^0 + q^1 + q^2 + \dots + q^{n-1})
+    \]
+    
+    To make the main statement hold, we will first prove by mathematical induction that for all $n \in \mathbb{N}$:
+    \[
+    q^0 + q^1 + q^2 + \dots + q^{n-1} = \frac{1 - q^n}{1 - q}
+    \]
+    
+    \noindent{Base Case ($n = 1$):} \\
+    The left-hand side is $q^0 = 1$. The right-hand side is:
+    \[
+    \frac{1 - q^1}{1 - q} = 1
+    \]
+    Thus, the base case holds.
+    
+    \medskip
+    \noindent{Inductive Step:} \\
+    Assume that the statement holds for a specific integer $k \ge 1$:
+    \[
+    q^0 + q^1 + \dots + q^{k-1} = \frac{1 - q^k}{1 - q}
+    \]
+    
+    Now, we check the statement for $k + 1$:
+    \begin{align*}
+    q^0 + q^1 + \dots + q^{k-1} + q^k &= \frac{1 - q^k}{1 - q} + q^k \\[1ex]
+    &= \frac{(1 - q^k) + q^k(1 - q)}{1 - q} \\[1ex]
+    &= \frac{1 - q^k + q^k - q^{k+1}}{1 - q} \\[1ex]
+    &= \frac{1 - q^{k+1}}{1 - q}
+    \end{align*}
+    Therefore, the inductive hypothesis holds for $k + 1$. By the principle of mathematical induction, the identity is true for all $n \in \mathbb{N}$.
+    
+    \medskip
+    Substituting this identity back into our equation for $S_n$:
+    \[
+    S_n = b_1 \left( \frac{1 - q^n}{1 - q} \right)
+    \]
+    Then the statement holds. 
+
+
+
+    \item 
+
+    Prove that for every natural number \(n\) the equation holds true:
+    \[
+    1^2 + 2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}.
+    \]
+
+
+    Consider base case n = 1.
+
+    Left part = $1^2 = 1$
+    
+    Right part = $\frac{1*2*3}{6} = 1$
+    
+    Base case holds
+
+    Inductive hypothesis: suppose that for $k \geq 1$ ; $k \in N$, the following statement holds:
+
+    1^2 + 2^2 + ... + k^2 = \frac{k(k+1)(2k+1)}{6}
+
+    Then for k + 1:
+
+    1^2 + 2^2 + ... + k^2 + (k+1)^2 = \frac{k(k+1)(2k+1)}{6} + (k+1)^2 = \frac{(k+1)(2k^2 + 7k + 6)}{6} = \frac{(k+1)(k+2)(2k+3)}{6} = \frac{(k+1)((k+1)+1)(2(k+1)+1)}{6}
+
+    Therefore the statement holds
+
+
+    \item 
+
+    Count the number of integers between 1 and 1000, that are divisible by 6 and 10
+
+    Consider the set A = \{n \| $n \in N$ and $n \in (1,1000)$ and $n = 6k$, $k \in N$ and $n = 10p$, $p\in N$\}
+
+    Since divisors 10 and 6 are not prime, perform prime number factorization to get LCM (6,10):
+
+    6 = 2 * 3
+    
+    10 = 2 * 5 
+
+    LCM(6,10) = 2 * 5 * 3 = 30
+
+    Then A = \{n \| $n \in N$ and $n \in (1,1000)$ and $n = 6k$, $k \in N$ and $n = 10p$, $p\in N$\} = \{n \| $n \in N$ and $n \in (1,1000)$ and $n = 30q$, $q \in N$ \}
+
+    Every 30th number in sequence (1,1000) of natural numbers is divisible by 30.
+
+    Then \|A\| = $\lfloor\frac{1000}{30}\rfloor$ = 33
+
+
+    \item  Count the number of integers between 1 and 1000, that are divisible by either
+3 or 10, but are not divisible by 15.
+
+ Consider sets:
+    A &= \{n \mid n \in \mathbb{N} \text{ and } 1 \le n \le 1000 \text{ and } n = 3k, \, k \in \mathbb{N}\} \\
+    B &= \{n \mid n \in \mathbb{N} \text{ and } 1 \le n \le 1000 \text{ and } n = 10p, \, p \in \mathbb{N}\} \\
+    C &= \{n \mid n \in \mathbb{N} \text{ and } 1 \le n \le 1000 \text{ and } n = 15q, \, q \in \mathbb{N}\}
+
+By computing the sizes of these sets:
+
+    \|A\| &= \left\lfloor\frac{1000}{3}\right\rfloor = 333 \\
+    \|B\| &= \left\lfloor\frac{1000}{10}\right\rfloor = 100 \\
+    \|C\| &= \left\lfloor\frac{1000}{15}\right\rfloor = 66
+
+Number that are divisible either by 3 or 10, but not 15 belong to set $X = (A \cup B) \setminus C$.
+
+By the inclusion-exclusion principle for set subtraction:
+\[
+
+\|X\| = \|A\| + \|B\| - \|A \cap B\| - \|A \cap C\| - \|B \cap C\| + \|A \cap B \cap C\|
+\]
+
+Where the intersections are defined as:
+
+    \|A \cap B\| &= \left\lfloor\frac{1000}{\text{lcm}(3,10)}\right\rfloor = \left\lfloor\frac{1000}{30}\right\rfloor = 33 \\
+    \|A \cap C\| &= \left\lfloor\frac{1000}{\text{lcm}(3,15)}\right\rfloor = \left\lfloor\frac{1000}{15}\right\rfloor = 66 \\
+    \|B \cap C\| &= \left\lfloor\frac{1000}{\text{lcm}(10,15)}\right\rfloor = \left\lfloor\frac{1000}{30}\right\rfloor = 33 \\
+    \|A \cap B \cap C\| &= \left\lfloor\frac{1000}{\text{lcm}(3,10,15)}\right\rfloor = \left\lfloor\frac{1000}{30}\right\rfloor = 33
+
+
+Substituting the values into the formula:
+
+    \|X\| &= 333 + 100 - 33 - 66 - 33 + 33 \\
+    \|X\| &= 334
+
+\item Count the number of integers between 100 and 999, that have at least one
+digit divisible by 4 (0 is divisible by any integer).
+
+Suppose U is set of all possible numbers between 100-999 (900 numbers total). Suppose set A contains numbers with at least 1 digit divisible by 4. Suppose set B contains number with no digits divisible by 4.
+
+Since no number can belong to A and B simultaneously, $|A| = |U| - |B|
+
+Each possible digit for $x \in B$ can be found in set $\{1,2,3,5,6,7,9\}$, 7 digits total. Then |B| = 7^3 = 343
+
+Then $|A| = 900 - 343 = 557$
+
+\item Prove de Morgan’s laws:
+
+\overline{A \cap B} &= \overline{A} \cup \overline{B} \\
+\overline{A \cup B} &= \overline{A} \cap \overline{B}
+
+Using direct proof and logical de Morgan's laws:
+
+$(A \cap B)^c = \{x| x \not\in (A \cap B)\} = \{x | x \not\in A \lor x \not\in B\} = \{x | x \in A^c \lor x \in B^c\} = A^c \cup B^c$. Statement 1 is proven
+
+
+$(A \cup B)^c = \{x | x \not\in (A \cup B)\} = \{x| x \not\in A \land x \not\in B\} = \{x| x \in A^c \land x \in B^c\} = A^c \cap B^c$. Statement 2 is proven
+
+\item Simplify the following expression using set operations and de Morgan’s laws
+in such a way, that the complement is only applied to A, B or C, but not to
+any complex expression. Simplify the experssion.
+
+$\neg(A\cup(\neg B \cap A)$ \backslash $(\neg C \cup \neg(B \cup A)))$
+
+Left from backshlash:
+
+(A \cup \neg B) \cap A = A
+
+Right from backslash:
+
+(\neg C \cup \neg(B \cup A)) = \neg C \cup (\neg B \cap \neg A)
+
+
+Then $\neg(A\cup(\neg B \cap A)$ \backslash $(\neg C \cup \neg(B \cup A)))$ = \neg(A \backslash (\neg C \cup (\neg B \cap \neg A))) = \neg((A \cap C) \cup (A \cap B \cap C)) = \neg (A \cap C) = \neg A \cup \neg C
+
+\item Draw the Venn diagram for the set $\neg A \cup \neg B \cup C$
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{2_8.png}
+\end{figure}
+
+The requested set is \textbf{ALL EXCEPT} orange compartment
+
+
+
+\item For each of the following binary relations on the set \(A=\{a,b,c\}\) check, whether it is reflexive, anti-reflexive, symmetric, anti-symmetric, transitive:
+
+1. \(R_1=\{(a,a),(a,b),(b,a),(b,b),(c,c)\}\)
+
+Reflexive, symmetric,transitive 
+
+2.  \(R_2=\{(a,a),(a,c),(c,b),(a,b),(b,b),(c,c)\}\)
+
+Reflexive, anti symmetric, transitive
+
+3.  \(R_3=\{(a,a),(a,c),(c,b),(a,b)\}\)
+
+Anti-symmetric, transitive
+
+
+\item Consider two sequences of sets \(A_i\) и \(B_i\), where \(i\) ranges from \(1\) to \(n\). Define
+\(X = \bigcup_{i=1}^n A_i = A_1 \cup A_2 \cup \ldots \cup A_{n-1} \cup A_n\), \(Y = \bigcup_{i=1}^n B_i\), \(Z = \bigcup_{i=1}^n (A_i \setminus B_i)\). Come up with an example where \(X \setminus Y \neq Z\). Is any of inclusions \(X \setminus Y \subset Z\) or \(Z \subset X \setminus Y\) true?
+\textit{P.S. To prove falsity, it is enough to provide a counterexample. To prove truth, a formal proof is required.}
+
+1. Come with example where X \backslash Y \not = Z
+
+Suppose n = 2; $A_1 = \{x\}; A_2 = \varnothing; B_1 = \varnothing; B_2 = \{x\}$
+
+Then X = \{x\} \cup \varnothing = \{x\}
+
+Y = \varnothing \cup \{x\} = \{x\}
+
+Z = ($\{x\} \backslash \varnothing) \cup (\varnothing \backslash \{x\}$) = \{x\}
+
+$X \backslash Y = \{x\} \backslash \{x\} = \varnothing \not = Z \longrightarrow$ counterexample found
+
+
+2. Is inclusion $X \backslash Y \subset$ Z true?
+
+Let y \in $X \backslash Y$. Then $(y \in X) \land (y \not \in Y)$. Then $(y \in A_p, p \in [1,n]) \land (y \not \in B_p, p \in [1,n])$
+
+Since y can belong to any $A_p$, and y doesnt belong to any $B_p$, $y \in A_p \backslash B_p$.
+
+Since Z is union of $A_i \backslash B_i, i \in [1,n]$, $y \in Z$. Then $\all y \in X \backslash Y$ also belong to Z, therefore inclusion $X \backslash Y \subset$ Z is true
+
+3. Is inclusion $Z \subset X \backslash Y$ true?
+
+This inclusion is not always true, see paragraph 1 of this task
+
+
+    
+    
+
+
+\end{enumerate}
+
+\end{document}
