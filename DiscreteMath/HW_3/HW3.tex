@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW3}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+\item For function $\quad & f_1: \mathbb{R} \to \mathbb{R} \quad f_1(x) = x^2 \cdot \sin(x) \\$ find its range and determine if it is injective, surjective, and bijective
+
+x^2: \mathbb{R} \rightarrow [0, \infty)
+
+sin(x): $\mathbb{R} \rightarrow [-1,1] = [-1, 0] \cup (0,1]$
+
+Consider $x \rightarrow \infty$ and $sin(x) = -1$. Thus, $f_1(x) = -x^2 \rightarrow -\infty$
+
+Consider $x \rightarrow \infty$ and $sin(x) = 1$. Thus $f_1(x) = x^2 \rightarrow \infty$
+
+Since $f_1(x)$ is continuous and is defined in $(-\infty, \infty)$, its range is \mathbb{R}
+
+Therefore, $f_1$ is surjective
+
+Consider $x_1 = 0$ and $x_2 = 2 \pi$. Then $f_1(x_1) = f_1(x_2) = 0, x_1 \not = x_2$. Then $f_1$ is not injective.
+
+Since $f_1$ is not injective, it's also not bijective
+
+
+
+\item 
+
+For function $\quad & f_2: [0; +\infty) \to \mathbb{R} \quad f_2(x) = \sqrt{3x^2 + 1} \\$ find its range and determine if it is injective, surjective, and bijective
+
+Suppose x = 0. Then $f_2(x) = \sqrt{1}$
+
+Suppose $x \rightarrow \infty$. Then $f_2(x) = \sqrt{3x^2 + 1} \rightarrow \infty$
+
+Then $R(f_2)$ is $[\sqrt{1}, \infty)$
+
+$f_2$ is not surjective as R(f_2) \not =\mathbb{R}
+
+
+Injectivity breaks if \exists x_1, x_2 | f(x_1) = f(x_2), x_1 \not = x_2
+
+Suppose such $x_1, x_2$ exists. Then $\sqrt{3x_1^2+1}$$ = $\sqrt{3x_2^2+1} \rightarrow x_1^2 = x_2^2$. Possible only if $x_2 = -x_1$. But if $x_1 \in [0, \infty), -x_1 < 0$ and $-x_1 \not \in [0, \infty)$. Then such pair of $x_1, x_2$ does not exists if given domain holds. x = 0 does not break injectivity as $0 = -0 \in [0, \infty)$. Therefore this function is injective
+
+Since $f_2$ is not surjective, its also not bijective
+
+
+
+\item 
+
+
+For function $\quad & f_3: \mathbb{R} \to \mathbb{R} \quad f_3(x) = x^3 - 1 \\$ find its range and determine if it is injective, surjective, and bijective
+
+
+Since $f_3$ is continuous function, we will apply Intermediate Value Theorem to find range.
+
+Suppose $x \rightarrow \infty$. Then $f_3(x) \rightarrow \infty$
+
+Suppose $x \rightarrow - \infty$. Then $f_3(x) = x^2 * x - 1 \rightarrow -\infty$
+
+Therefore, if domain is $\mathbb{R}$, the range is also $\mathbb{R}$.
+
+Therefore, $f_3$ is surjective.
+
+Suppose $f_3(x) = x_1^3 - 1 = x_2^3 - 1 \rightarrow x_1^3 = x_2^3$, which is possible iff $x_1 = x_2$. Thus $f_3$ is injective
+
+As per problem statements, the domain of $f_3$ is $\mathbb{R}$, thus the function is everywhere defined. Also problem states that mapping $f_3$ is function. If the mapping is surjective, injective, everywhere defined function, it is bijective.
+
+
+\item 
+
+Twelve points are chosen on a circle. Which is larger: the number of convex tetragon with vertices at these points, or the number of convex octagons with vertices at these points?
+
+Suppose 4 points are chosen to build tetragon. This tetragon will always be convex, as its impossible to build angle $>= 180^o$ without breaking the circle. If the tetragon build, there are 8 points left. There is possible to build convex octagon with these points as vertices, as its impossible to build angle $>= 180^o$ without breaking the circle. Therefore, there is one-to-one mapping before random tetragon and corresponding octagon. Thus, the number of convex tetragon with vertices at random points, is equal to the number of convex octagons with vertices at remaining points
+
+\item (0.5 points for each part) A function $f$ on binary strings of length $n$ is defined by the following rule: in the string $x$, find the rightmost 0 and change it to 1, and change all 1's to the right of that 0 to 0's. We obtain the string $f(x)$. This rule is not applicable to $x = 1^n$; in this case we define the value of the function separately: $f(1^n) = 0^n$.
+
+b) Find $f^{-1}$ (give a rule according to which, from a string $x$, one obtains the string $f^{-1}(x)$). 
+
+
+Let $f^-^1$ be inverse mapping of $f$
+
+if $f(x) = 0^n$, then $f^-^1(f(x)) = 1^n$
+
+if $f(x) \not = 0^n$, there is at least one 1 in the string. We find the rightmost 1, change it to 0 and change all zeroes to its right to 1
+
+Consider x = $1^n$. Then $f(x) = 0^n$. Then $f^-^-1(f(x)) = 1^n = x$
+
+Consider $x \not = 1^n$. Then $x = \omega01^k$, k = number of consecutive ones. Then $f(x) = \omega10^k$. Then $f^-^1(f(x)) = \omega01^k = x$. Thus reverse mapping $f^-^1$ is defined for every output of f.
+
+
+a) If reverse mapping $f^-^1$ exists, f is bijection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Is it true that the composition of injections is an injection?
+
+Suppose that mappings $t(x)$ and $g(x)$ are injective. Consider mapping $f(x) = g \circ t = g(t(x))$
+
+Assume mapping $f(x)$ is not injective. Then $ \exists x_1,x_2 \in D(f) | f(x_1) = f(x_2), x_1 \not = x_2$
+
+Then $g(t(x_1)) = g(t(x_2))$. Since mapping $g$ is injective, $t(x_1) = t(x_2)$. Since mapping $t$ is also injective, $x_1 = x_2$. 
+Contradiction found. Thus, composition of injections is an injection
+
+
+\item Is it true that the composition of surjections is a surjection?
+
+Consider surjective mappings t,f; and mapping g, such as:
+
+t: A \rightarrow B
+
+f: B \rightarrow C
+
+g: A \rightarrow C ;g =  f \circ t
+
+Since $t$ is surjective, $\forall y \in B, \exists x \in A | t(x) = y$
+
+Since $f$ is surjective, $\forall z \in C, \exists y \in B | f(y) = z$
+
+Mapping $g$ is surjective $\iff \forall z \in C, \exists x \in A | g(x) = z$
+
+$g(x) = z = f(y) = f(t(x)) \rightarrow \forall z \in C, \exists x \in A | g(x) = z$ 
+
+Therefore, composition of surjections is surjective
+
+
+\item  Is it true that if the composition f ◦ g of mappings is a bijection, then the mappings f and g are also bijections?
+
+Consider sets:
+
+A = \{1\}
+
+B = \{2,3,4,5\}
+
+C = \{1\}
+
+Consider mappings:
+
+g: A \rightarrow B
+
+f: B \rightarrow C
+
+t: A \rightarrow C; t = f \circ g
+
+Mapping $t$ is bijection because element 1 of set A is paired with element 1 of set C.
+
+However, this is false for mappings g,f. Therefore, its wrong that if the composition $f \circ g$ is a bijection, both mappings $f,g$ are bijections
+
+
+\item Determine the cardinality of the set of all strings over an alphabet of m sym-
+bols. A string is a finite sequence of symbols; there are no restrictions on adjacent symbols.
+
+Assuming set can contain strings of different length, and the empty string is valid, and $m >= 1$ the cardinality of set is $\sum_{n=0}^{\infty} m^n = \aleph_0$
+
+If $m = 0$, the only valid string is empty string, so cardinality = 1
+
+\item Determine the cardinality of the set of real numbers in the interval [a, b].
+
+
+Consider set A = $\{x | a < x < b; x,a,b \in \mathbb{R}\}$ and set B = $\{y | 0 < y < 1; y \in \mathbb{R}\}$
+
+Consider function f: $A \rightarrow B; f(x) = \frac{x-a}{b-a}$
+
+Also consider reverse function f^-^1: B $\rightarrow A; f^-^1(y) =  y(b-a) +a$
+
+If function f have reverse function $f^-^1$, f is bijective
+
+Since there is bijection from A to B, $|A| = |B|$
+
+Following Cantor's diagonal argument, the number of real number between 0 and 1 is uncountable. Thus, the number of real numbers betweens in interval (a,b) is uncountable. Adding to endpoints a,b to set interval (a,b) doesn't change cardinality
+
+if $a = b$, the cardinality of set of real numbers between a and b is 1 and contains one number $n = a = b$
+
+if $a > b$, the cardinality of set of real numbers between a and b is 0
+
+\end{enumerate}
+
+\end{document}
