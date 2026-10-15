@@ -6,25 +6,32 @@ app = marimo.App(width="medium")
 
 @app.cell
 def _():
+    import marimo as mo
+
+    return
+
+
+@app.cell
+def _():
     def problem1():
 
         def solve(a,b):
             # a > b
-    
+
             n = ((a-b) // 10) 
             r = ((a-b) % 10) 
-    
+
             if r != 0:
                 n += 1
             return(n)
-    
+
         t = int(input())
         t_i = 0
         answers = []
-    
+
         while t_i < t:
             a,b = map(int, input().split(' '))
-    
+
             if a == b:
                 n = 0
             elif a > b:
@@ -37,7 +44,7 @@ def _():
 
         for i in answers:
             print(i)
-        
+
 
     problem1()
     return
@@ -45,6 +52,37 @@ def _():
 
 @app.cell
 def _():
+    def problem2():
+        solution = []
+
+        t = int(input())
+        t_i = 0
+
+        def solve(arr):
+            lim = len(arr)
+          #  for i in range(len(arr)-2):
+            a,b,c = 0, 1, lim-1
+            if arr[a]+arr[b] <= arr[c]:# or arr[a]+arr[c] <= arr[b] or arr[b]+arr[c] <= arr[a]:
+                return(a+1,b+1,c+1)
+            else:
+
+                return([-1])
+            
+        
+    
+
+        while t_i < t:
+            _ = input()
+            arr = list(map(int,input().split(' ')))
+            solution.append(solve(arr))
+
+            t_i += 1
+
+        for i in solution:
+        
+            print(*i)
+
+    problem2()
     return
 
 
@@ -62,7 +100,7 @@ def _():
             n_strings = len(arr)
            # print(n_strings)
             arr = ''.join(arr)
-    
+
             uniques = list(set(list(arr)))
             #print(arr, uniques)
 
@@ -73,7 +111,7 @@ def _():
 
             return('YES')
 
-        
+
 
         while t_i < t:
 
@@ -94,51 +132,88 @@ def _():
             print(i)
 
     problem3()
-        
-    
+
     return
 
 
 @app.cell
 def _():
-    import marimo as mo
+    def problem_4():
+        solution = []
+        t = int(input())
+        t_i = 0
 
+
+        def solve(n,s):
+            answer = ''
+        
+
+            chunks = [s[i:i+n] for i in range(len(s) - n + 1)]
+            j = 0
+
+            for s_i in chunks:
+                answer += s_i[j]
+                j+=1
+
+            return(answer)
+
+        
+        
+        
+        
+
+        while t_i < t:
+        
+            t_i += 1
+            n = int(input())
+            s = str(input())
+
+            solution.append(solve(n,s))
+
+        for i in solution:
+            print(i)
+
+
+    problem_4()
+        
     return
 
 
 @app.cell
 def _():
     def problem_5():
-        solution = []
+
         t = int(input())
         t_i = 0
+        solutions = []
+
 
         def solve(arr,k):
             k_i = 0
 
             while k_i < k:
-
                 d = max(arr)
+
                 for i in range(len(arr)):
                     arr[i] = d - arr[i]
-                k_i += 1
-
-            return(arr)
             
-
+                k_i += 1
+            return(arr)
         while t_i < t:
-            _, k = list(map(int, input().split(' ')))
-            arr = list(map(int, input().split(' ')))
-            solution.append(solve(arr,k))
-
+            k = list(map(int,input().split(' ')))[1]
+            arr = list(map(int,input().split(' ')))
             t_i += 1
 
-        for i in solution:
-            if len(i) == 1:
-                print(str(i[0]))
-            else:
-                print(' '.join(list(map(str, i))))
+            if k%2 == 0:
+                k = 2
 
+            else:
+                k = 1
+
+            solutions.append(solve(arr,k))
+
+        for i in solutions:
+            print(*i)
 
     problem_5()
     return
