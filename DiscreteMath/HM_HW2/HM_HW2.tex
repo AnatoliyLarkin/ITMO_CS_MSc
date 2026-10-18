@@ -1,0 +1,191 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\title{Higher Math HW2}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+    \item For each expression, identify every free variable and every bound variable occurrence.
+Pay attention to variables that appear both free and bound in the same expression.
+
+Since variable is bound if it lies in the scope of quantifier and is free otherwise:
+
+
+\text{a)} \quad & \forall x (P(x, y) \Rightarrow Q(x)); \\
+
+Occurence of $x$ in $P(x,y)$ is bound. Occurence of $x$ in $Q(x)$ is bound. Occurence of $y$ in $P(x,y)$ is free
+
+\text{b)} \quad & (\exists y R(x, y)) \land S(y); \\
+
+Occurence of $y$ in $R(x,y)$ is bound. Occurence of $x$ in $R(x,y)$ is free. Occurence of $y$ in $S(y)$ is free
+
+\text{c)} \quad & \forall x \exists y (R(x, y) \land T(z)); \\
+
+Occurence of $x$ and $y$ in $R(x,y)$ is bound. Occurence of $z$ in $T(z)$ is free
+
+\text{d)} \quad & (\forall x P(x)) \lor Q(x).
+
+Occurence of $x$ in $P(x)$ is bound. Occurence of $x$ in $Q(x)$ is free
+
+\item  Let \(S\) be a set of biological samples and \(G\) a set of genes. Write \(D(s, g)\) for the statement ``gene \(g\) is detected in sample \(s\).'' Translate each sentence into a formula using quantifiers.
+
+
+\begin{enumerate}
+    \item Every sample has at least one detected gene.
+    
+    $ \forall s \in S, \exists g \in G | D(s,g)$
+    
+    \item There is a gene detected in every sample.
+
+    $ \exists g \in G | \forall s \in S$ $D(s,g)$
+    \item Some gene is not detected in any sample.
+
+    $ \exists g \in G | \neg (\exists s \in S, D(s,g)) $
+
+    
+    \item There is a sample in which no genes are detected.
+
+    $ \exists s\in S| \neg(\exists g \in G, D(s,g))$
+\end{enumerate}
+
+
+\item For the following toy gene-detection table, 1 means ``detected'' and 0 means ``not detected.'' Let \(S = \{s_1, s_2, s_3\}\) and \(G = \{g_1, g_2, g_3\}\).
+
+\[
+\begin{array}{c|ccc}
+  & g_1 & g_2 & g_3 \\
+\hline
+s_1 & 1 & 1 & 0 \\
+s_2 & 0 & 1 & 0 \\
+s_3 & 0 & 0 & 1 \\
+\end{array}
+\]
+
+Decide whether each statement is true or false and briefly justify your answer.
+
+\begin{itemize}
+    \item[a)] \(\forall s \in S \exists g \in G : D(s,g);\)
+
+    True, as $D(s_1, g_1), D(s_2, g_2), D(s_3,g_3)$
+    \item[b)] \(\exists g \in G \forall s \in S : D(s,g);\)
+    
+    False, as $\forall g\in G, \exists s \in S | \neg D(s,g)$
+    
+    \item[c)] \(\forall g \in G \exists s \in S : D(s,g);\)
+
+    True, as $D(s_1, g_1), D(s_2, g_2), D(s_3,g_3)$
+    
+    \item[d)] \(\exists s \in S \forall g \in G : D(s,g).\)
+
+    False, as $ \forall s \in S \exists g \in G| \neg D(s,g)$
+\end{itemize}
+
+
+\item Negate the following statements. Push all negation signs inward, so that they apply only to elementary predicates.
+\begin{enumerate}
+    \item \(\forall x \in \mathbb{R} \exists y \in \mathbb{R} : x < y;\)
+
+    $\exists x \in \mathbb{R} \forall y \in \mathbb{R}: x \geq y$
+    
+    \item \(\exists x \in \mathbb{R} \forall y \in \mathbb{R} : x \leq y;\)
+    
+    $\forall x \in \mathbb{R} \exists y \in \mathbb{R}: x > y$
+    
+    \item \(\forall s \in S \exists g \in G : D(s,g).\)
+    
+    $\exists s \in S \forall g \in G: \neg D(s,g)$
+    
+\end{enumerate}
+Additionally, determine whether the original statement in (a) is true and whether its negation is true.
+
+Consider $x = n, n \in \mathbb{R}$. Consider $y = n + k, k > 0, k \in \mathbb{R}$. Since $n < n + k$, statement (a) is true. Since statement (a) is true, its negation is false.
+
+
+
+\item Consider the set of DNA nucleotides \(U = \{\text{A}, \text{C}, \text{G}, \text{T}\}\) and the subsets
+\[
+X = \{\text{A}, \text{C}\}, \qquad Y = \{\text{A}, \text{C}, \text{G}\}, \qquad Z = \{\text{C}, \text{G}\}.
+\]
+\begin{enumerate}
+    \item Decide which statements are true: \(X \subseteq Y\), \(X \subset Y\), \(Z \subseteq Y\), \(X \subseteq Z\).
+
+    $\(X \subseteq Y\): T;$ $\(X \subset Y\): T$; $\(Z \subseteq Y\):T$; $\(X \subseteq Z\) :F$
+
+    
+
+    
+    \item List all subsets of \(Y\).
+
+    $\{A,C,G\}; \{A,C\}; \{C,G\}; \{A,G\}; \{A\}; \{C\}; \{G\}; \emptyset
+    
+    \item List all strict subsets of \(Y\).
+
+    $\{A,C\}; \{C,G\}; \{A,G\}; \{A\}; \{C\}; \{G\}; \emptyset
+    
+    \item Explain why \(Y \subseteq Y\) but \(Y \not\subset Y\).
+
+    $\forall x(x \in Y \iff x \in Y)$, therefore $Y \subseteq Y$
+
+    $A \subset B \Rightarrow A \not = B$. Since $Y = Y$, $Y \not\subset Y$
+\end{enumerate}
+
+Prove the following statements or provide a counterexample, as requested.
+\begin{enumerate}
+    \item Prove that \(A \subseteq B \land B \subseteq C \Rightarrow A \subseteq C\).
+
+    Since $A \subseteq B$, $\forall x \in A, x \in B$. Since $B \subseteq C, \forall x \in B, x \in C$. Thus, $\forall x \in A, x \in C$. Therefore, $A \subseteq C$
+
+
+
+    \item Prove that
+    \[
+    A \subsetneq B \Leftrightarrow (A \subseteq B) \land (\exists x \in B : x \notin A).
+    \]
+
+    Consider definition:
+
+    $A \subset B \iff A \subseteq B \land A \not= B $
+    
+    $\exists x \in B: x \not\in A$ $\Rightarrow A \not=B$. By definition $(A \subseteq B) \land (A \not= B) \Rightarrow A \subset B$. Thus RHS implies LHS
+
+    $(A \subset B) \iff (\forall x \in A, x \in B) \land (A \not= B) \Rightarrow (A \subseteq B) \land (\exists x \in B: x \not\in A)$. Therefore, LHS implies RHS
+
+
+
+    \item Is the following implication always true?
+    \[
+    A \cup C \subseteq B \cup C \Rightarrow A \subseteq B.
+    \]
+    If not, construct a counterexample using small finite sets.
+
+    Consider $A = \{1,2\}$
+
+    $B = \emptyset$
+
+    $C = \{1,2,3,4\}$
+
+    $A \cup C = \{1,2,3,4\}$
+
+    $B \cup C = \{1,2,3,4\}$
+
+    $(A \cup C) \subseteq (B \cup C)$
+
+    $A \not\subseteq B$
+
+    Thus, the implication is not always true
+
+
+
+    
+    
+\end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
