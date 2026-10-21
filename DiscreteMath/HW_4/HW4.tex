@@ -1,0 +1,154 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW4}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+\item Suppose you have a deck of cards, each card has a number on one side, and
+the opposite side is colored red or green. You want to check the following rule:
+«if a card has an even number on one side, then the opposite side is colored
+red».
+You see 4 cards on the desk, they show: number 6, number 1, red, green.
+What is the minimum number of cards (and which ones) you have to turn
+over to look at to check if the rule holds true?
+
+Check card number 6. If it's red, the rule holds so far. If it is green, the rule doesn't hold.
+
+Check green card. If the numbers is odd, the rule holds. If it is even, the rule doesn't hold.
+
+No more cards are required to check if this rule holds.
+
+Card number 1 can be any color, as it would not violate the rule.
+
+Red card can have any number, as it would not violate the rule.
+
+
+
+
+\item Build the truth table for a boolean function \(f(a,b,c) = ((b \land a) \oplus a) \lor (\neg a) \lor (c \land a)\)
+
+$(f(a,b,c) = ((b \land a) \oplus a) \lor (\neg a) \lor (c \land a)\) = (\neg b \land a) \lor (\neg a) \lor (c \land a) = (\neg b \lor \neg a) \lor (c \land a) = \neg (b \land a) \lor (c \land a)$
+
+\begin{tabular}{c|c|c|c}
+\(a\) & \(b\) & \(c\) & \(f(a, b, c)\) \\
+\hline
+T & T & T & T \\
+T & T & F & F \\
+T & F & T & T \\
+T & F & F & T \\
+F & T & T & T \\
+F & T & F & T \\
+F & F & T & T \\
+F & F & F & T \\
+\end{tabular}
+
+
+\item Determine, which of the functions will be constant 1 (always return 1), and which will be constant 0.
+
+\begin{enumerate}
+    \item \((x \implies (y \implies z)) \implies ((x \implies y) \implies z)\)
+
+    Since $a \implies b \equiv \neg a \lor b$:
+
+    $(x \implies (y \implies z)) \implies ((x \implies y) \implies z) \equiv (\neg x \lor \neg y \lor z) \implies ((x \land \neg y) \lor z) \equiv \neg(\neg x \lor \neg y \lor z) \lor ((x \land \neg y) \lor z) \equiv (x \land y \land \neg z) \lor ((x \land \neg y) \lor z) = z \lor (x \land y) \lor (x \land \neg y) = z \lor (x \land (y \lor \neg y)) = z \lor x \in \{0,1\}$ (not constant)
+    
+    \item $((x \implies y) \land (y \implies z)) \implies (x \implies z)
+    \equiv \neg ((\neg x \lor y) \land (\neg y \lor z)) \lor (\neg x \lor z)
+    \equiv \neg (\neg x \lor y) \lor \neg (\neg y \lor z) \lor \neg x \lor z
+    \equiv (x \land \neg y) \lor (y \land \neg z) \lor \neg x \lor z
+    \equiv (x \land \neg y) \lor \neg x \lor (y \land \neg z) \lor z
+    \equiv ((x \lor \neg x) \land (\neg y \lor \neg x)) \lor ((y \lor z) \land (\neg z \lor z))
+    \equiv (1 \land (\neg y \lor \neg x)) \lor ((y \lor z) \land 1)
+    \equiv \neg x \lor \neg y \lor y \lor z
+    \equiv \neg x \lor 1 \lor z
+    \equiv 1$
+    
+    \item \(x \land (x \implies y) \land (x \implies \neg y)\)
+
+    $x \land (x \implies y) \land (x \implies \neg y) \equiv x \land (\neg x \lor y) \land (\neg x \lor \neg y) \equiv (x \land \neg x) \lor (x \land y) \lor (\not x \lor \not y) \equiv 0 \lor (x \land y) \land (\neg x \lor \neg y) \equiv 0 \lor (x \land y) \land \neg (x \land y) = 0 \lor 0 \equiv 0$
+\end{enumerate}
+
+\item Simplify the functions, using in the answer only operations \(\land\), \(\lor\) и \(\neg\) (conjunction, disjunction and negation).
+
+(a) \((x \implies y) \implies y\)
+
+Since $a \implies b \equiv \neg a \lor b$:
+
+$(x \implies y) \implies y \equiv (\neg x \lor y) \implies y \equiv \neg (\neg x \lor y) \lor y \equiv (x \land \neg y) \lor y \equiv (y \lor \neg y) \land (x \lor y) \equiv T \land (x \lor y) \equiv x \lor y$
+
+
+(b) \(\neg(x \implies \neg y)\)
+
+$\neg(x \implies \neg y) \equiv \neg (\neg x \lor \neg y) \equiv x \land y$
+
+
+\item Express this boolean function (defined by the following truth table), using \(\land\), \(\lor\) and \(\neg\). And simplify the answer.
+
+\[
+\begin{array}{c|c|c|c}
+x & y & z & f(x, y, z) \\
+\hline
+0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1
+\end{array}
+\]
+
+
+$f(x,y,z) = 1 \equiv (\neg x \land \neg y \land z) \lor (x \land \neg y \land z) \lor (x \land y \land z) = (\neg y \land z) \land (\neg x \lor x) \lor (x \land y \land z) = (\neg y \land z) \lor (x \land y \land z) = z \land ((\neg y \lor y) \land (\neg y \lor z)) = z \land (\neg y \lor (x \land y)) = z \land ((\neg y \lor y) \land (x \lor \neg y)) = z \land (x \lor \neg y)$
+
+\[
+\begin{array}{c|c|c|c|c}
+x & y & z & f(x, y, z) & $z \land (x \lor \neg y)$ \\
+\hline
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 1 & 1\\
+0 & 1 & 0 & 0 & 0\\
+0 & 1 & 1 & 0 & 0\\
+1 & 0 & 0 & 0 & 0\\
+1 & 0 & 1 & 1 & 1\\
+1 & 1 & 0 & 0 & 0\\
+1 & 1 & 1 & 1 & 1
+\end{array}
+\]
+
+\item Fill the blank spaces with universal and existence quantifiers to get true statements. Write the most general statements (i.e. choose universal quantifier if both solutions are possible)
+
+\begin{itemize}
+    \item \(\dots x \in \mathbb{N} : x > 10\)
+
+    $\exists x \in \mathbb{N}: x > 10$
+    
+    \item \(\dots x \in \mathbb{N} \dots y \in \mathbb{N} : x + y = 10\)
+
+    $\exists x \in \mathbb{N} \exists y \in \mathbb{N}: x + y = 10$
+    \item \(\dots x \in \mathbb{N} \dots y \geq 1 \in \mathbb{N} : x \bmod y = 0\)
+
+    $\forall x \in \mathbb{N} \exists y \geq 1 \in \mathbb{N}: x \mod y = 0$
+    
+    \item \(\dots x \in \mathbb{R} \dots y \in \mathbb{R} : x^2 + y^2 \geq 0\)
+
+    $\forall x \in \mathbb{R} \forall y \in \mathbb{R}: x^2 + y^2 \geq 0$
+    
+    \item \(\dots x \in \mathbb{N} \dots y \in \mathbb{N} : x = \frac{(y + 77) \cdot 2 + 324}{2} - y\)
+
+    $x = \frac{(y+77)*2+324}{2} - y \equiv \frac{2y + 478}{2}-y = x \equiv x = 239$
+
+    $\exists x \in \mathbb{N} \forall y \in \mathbb{N}: x = 239$
+    
+\end{itemize}
+
+\end{enumerate}
+\end{document}
