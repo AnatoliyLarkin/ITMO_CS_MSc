@@ -35,7 +35,7 @@ def _():
 
                 return([['YES'], [6,10,14, x]])
 
-    
+
 
 
         while t_i < t:
@@ -84,7 +84,6 @@ def _():
 
 
     problem_6()
-
     return
 
 
@@ -121,9 +120,9 @@ def _():
         print('YES')
     else:
         print('NO')
-        
     
-    
+
+
     return
 
 
@@ -172,7 +171,6 @@ def _():
     problem_8()
 
 
-
     return
 
 
@@ -212,7 +210,6 @@ def _():
 
 
     problem_2()
-
     return
 
 
@@ -230,90 +227,74 @@ def _():
         k_i = 0
         answers = []
 
-
         def merge(subarr1, subarr2):
+            merged_array = []
+            i, i_max = 0, len(subarr1) 
+            j, j_max = 0, len(subarr2) 
 
-
-            if True:
-                merged_array = []
-
-                i, i_max = 0, len(subarr1) 
-                j, j_max = 0, len(subarr2) 
-
-                while i < i_max and j < j_max:
-
-                    if subarr1[i] <= subarr2[j]:
-                        merged_array.append(subarr1[i])
-                        i += 1
-                    else:
-                        merged_array.append(subarr2[j])
-                        j += 1
-
-
-                if i == i_max:
-                    merged_array.extend(subarr2[j:])
-
+            while i < i_max and j < j_max:
+                if subarr1[i] <= subarr2[j]:
+                    merged_array.append(subarr1[i])
+                    i += 1
                 else:
-                    merged_array.extend(subarr1[i:])
+                    merged_array.append(subarr2[j])
+                    j += 1
 
-                return(merged_array)
-
-
-
-
-
+            if i == i_max:
+                merged_array.extend(subarr2[j:])
+            else:
+                merged_array.extend(subarr1[i:])
+            return merged_array
 
         def merge_sort(arr):
+            if len(arr) <= 1: 
+                return arr
+            midpoint = len(arr) // 2
+            s1, s2 = arr[:midpoint], arr[midpoint:]
+            return merge(merge_sort(s1), merge_sort(s2))
 
-            if len(arr) == 1:
-                return(arr)
-
-            else:
-                midpoint = len(arr) // 2
-                s1,s2 = arr[:midpoint], arr[midpoint:]
-                return(merge(merge_sort(s1), merge_sort(s2)))
-
-
-
-
-        def binary_search(n,arr, low, up):
-
-            if low > up:
-                return(False)
-
-            midpoint = (low+up) // 2
-
-            if arr[midpoint] == n:
-                return(midpoint)
-
-            elif n < arr[midpoint]:
-                return(binary_search(n,arr,low,midpoint-1))
-
-            else:
-                return(binary_search(n,arr, midpoint+1, up))
+        def binary_search_l(l, arr):
+            lower = 0
+            upper = len(arr) - 1
+            result = len(arr) 
+        
+            while lower <= upper:
+                midpoint = (lower + upper) // 2
+                if arr[midpoint] >= l:
+                    result = midpoint
+                    upper = midpoint - 1
+                else:
+                    lower = midpoint + 1
+            return result
+    
+        def binary_search_r(r, arr):
+            lower = 0
+            upper = len(arr) - 1
+            result = len(arr) 
+        
+            while lower <= upper:
+                midpoint = (lower + upper) // 2
+                if arr[midpoint] > r: 
+                    result = midpoint
+                    upper = midpoint - 1
+                else:
+                    lower = midpoint + 1
+            return result
 
         arr_x = merge_sort(arr)
+    
         while k_i < k:
-
-
             query = list(map(int, input().split(' ')))
-            l,r = query[0], query[1]
+            l, r = query[0], query[1]
 
-            l_index = binary_search(l, arr_x, 0, len(arr_x)-1)
-            r_index = binary_search(r, arr_x, 0, len(arr_x)-1)
+            l_index = binary_search_l(l, arr_x)
+            r_index = binary_search_r(r, arr_x)
 
-    
-
-    
             k_i += 1
-
             answers.append(r_index - l_index)
 
         answers = ' '.join(list(map(str, answers)))
-
         print(answers)
-
-
 
     problem_3()
     return
@@ -322,32 +303,42 @@ def _():
 @app.cell
 def _():
     def problem_4():
-
         C = float(input())
+        low, up = 0.0, C
 
-        low = 0
-        up = C
-    
-        gap = 1e-8 
-    
-        while True: 
-            midpoint = (low + up) / 2
-            C_i = midpoint**2 + midpoint**(0.5)
-            if abs(C_i - C) < gap:
-                x = round(midpoint, 10)
-                break        
-            if C_i > C:
-                up = midpoint
+        for _ in range(200):                    
+            mid = (low + up) / 2
+            lhs = mid * mid + mid ** 0.5
+            if lhs > C:
+                up = mid
             else:
-                low = midpoint
+                low = mid
 
-        print(x)
+        return (low + up) / 2
 
-
-
-
-    problem_4()
+    print(problem_4())
     return
+
+
+app._unparsable_cell(
+    r"""
+    def problem_5():
+        q = list(map(int, input().split(' ')))
+        n,k = list[0], list[1]
+
+        timbers = [int(input()) for i in range(n)]
+
+
+        def check_if_possibl(l, arr):
+        
+    
+
+    
+
+    
+    """,
+    name="_"
+)
 
 
 if __name__ == "__main__":
