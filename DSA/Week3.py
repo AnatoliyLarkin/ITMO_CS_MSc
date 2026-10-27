@@ -120,7 +120,6 @@ def _():
         print('YES')
     else:
         print('NO')
-    
 
 
     return
@@ -169,7 +168,6 @@ def _():
 
 
     problem_8()
-
 
     return
 
@@ -257,7 +255,7 @@ def _():
             lower = 0
             upper = len(arr) - 1
             result = len(arr) 
-        
+    
             while lower <= upper:
                 midpoint = (lower + upper) // 2
                 if arr[midpoint] >= l:
@@ -266,12 +264,12 @@ def _():
                 else:
                     lower = midpoint + 1
             return result
-    
+
         def binary_search_r(r, arr):
             lower = 0
             upper = len(arr) - 1
             result = len(arr) 
-        
+    
             while lower <= upper:
                 midpoint = (lower + upper) // 2
                 if arr[midpoint] > r: 
@@ -282,7 +280,7 @@ def _():
             return result
 
         arr_x = merge_sort(arr)
-    
+
         while k_i < k:
             query = list(map(int, input().split(' ')))
             l, r = query[0], query[1]
@@ -320,25 +318,43 @@ def _():
     return
 
 
-app._unparsable_cell(
-    r"""
+@app.cell
+def _():
     def problem_5():
-        q = list(map(int, input().split(' ')))
-        n,k = list[0], list[1]
+        n, k = map(int, input().split())
+        timbers = [int(input()) for _ in range(n)]
 
-        timbers = [int(input()) for i in range(n)]
+        def is_bridging_possible(timbers, x, k):
+            width = 0
+            for i in timbers:
+                width += i // x
+            return width >= k
+
+        lower = 1
+        upper = max(timbers)
+        selected_width = 0 
+
+        while lower <= upper:
+            midpoint = (lower + upper) // 2
+
+            if is_bridging_possible(timbers, midpoint, k):
+                selected_width = midpoint  
+                lower = midpoint + 1     
+            else:
+                upper = midpoint - 1     
+
+        print(selected_width)
+
+    problem_5()
+    return
 
 
-        def check_if_possibl(l, arr):
-        
-    
+@app.function
+def problem_13():
+    _ = input()
 
-    
-
-    
-    """,
-    name="_"
-)
+    h = list(map(int, input().split(' ')))
+    d = list(map(int, input().split(' ')))
 
 
 if __name__ == "__main__":
