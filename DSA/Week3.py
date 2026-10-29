@@ -121,7 +121,6 @@ def _():
     else:
         print('NO')
 
-
     return
 
 
@@ -168,7 +167,6 @@ def _():
 
 
     problem_8()
-
     return
 
 
@@ -255,7 +253,7 @@ def _():
             lower = 0
             upper = len(arr) - 1
             result = len(arr) 
-    
+
             while lower <= upper:
                 midpoint = (lower + upper) // 2
                 if arr[midpoint] >= l:
@@ -269,7 +267,7 @@ def _():
             lower = 0
             upper = len(arr) - 1
             result = len(arr) 
-    
+
             while lower <= upper:
                 midpoint = (lower + upper) // 2
                 if arr[midpoint] > r: 
@@ -349,12 +347,47 @@ def _():
     return
 
 
-@app.function
-def problem_13():
-    _ = input()
+@app.cell
+def _():
+    def problem_13():
 
-    h = list(map(int, input().split(' ')))
-    d = list(map(int, input().split(' ')))
+        n = int(input())
+        h = list(map(int, input().split(' ')))
+        d = input()
+        ans = [0] * n
+
+        left = [0] * n
+        stack = []
+
+        for i in range(n):
+            left[i] = len(stack)
+
+            while stack and h[stack[-1]] < h[i]:
+                stack.pop()
+            
+            stack.append(i)
+        
+        stack = []
+
+        for i in range(n - 1, -1, -1):
+            if d[i] == 'R':
+                ans[i] = len(stack)
+
+            while stack and h[stack[-1]] < h[i]:
+                stack.pop()
+
+            stack.append(i)
+
+        for i in range(n):
+            if d[i] == 'L':
+                ans[i] = left[i]
+
+        print(*ans)
+
+
+    problem_13()
+    
+    return
 
 
 if __name__ == "__main__":
