@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW5}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+\item Find \(x\) such that the following expression is true in \(x\)-base system
+\[ 35_{x} + 53_{x} = 110_{x} \]
+
+$35_x = 5 + 3x$
+
+$53_x = 3 + 5x$
+
+$110x = x + x^2$
+
+$8+8x = x + x^2$
+
+$x^2 - 7x - 8 = 0$
+
+$x_1_,_2 = \frac{7\pm 9}{2} = 8, -1$
+
+Thus, for $x=8$ $35_x + 53_x = 110_x$ holds
+
+
+\item The same number is written in different numeral systems, where the symbol ? represents a single missing digit. Determine the original number and write it in the decimal system.
+\[ P_{10} = 6??_{16} = ?2?7_{8} = 1??1??_{4} = ?1?1??10?1?_{2} \]
+
+$P_{10} = \overline{6ab}_{16} = b + 16a+ 16^2b = 1536 + 16a + b$. Since $7* 16^2 = 1792$, $1536 \leq P_{10} \leq 1791$
+
+$P_{10} = \overline{?2?7}_8$. If first digit is 3, then $1536 \leq P_{10} \leq 1791 < 2048$
+
+Then $P_{10} = \overline{32c7}_8$
+
+$P_{10} = 1671 + 8c, c \in \{0,7\}, c \in \mathbb{N}$
+
+Then $1671 \leq P_{10} \leq 1727$
+
+$P_{10} = \overline{1??1??4}_4$
+
+Since $1671 \leq \overline{1??1??4}_4 \leq 1727$, $P_{10}$ must be $\overline{1221st}_4 = 1680 + t + 4s$
+
+Then $1680 \leq P_{10} \leq 1695$
+
+Since $1680 \leq 1671 + 8c \leq 1695 \rightarrow 9 \leq 8c \leq 24 \rightarrow c = 2,3$
+
+$c = 2 \rightarrow P_{10} = 3227_8 = 1687_{10} = 11010010111_2$ which fits the pattern $?1?1??10?1?_{2}$
+
+Thus $P_{10} = 1687$
+
+
+\item The sequence of antibiotic resistance gene OXA contains 1032 nucleotides. How many bytes are sufficient to store it in the computer memory (consider that one nucleotide is encoded with the minimal sufficient number of bits).
+
+Consider encoding:
+
+$A = 00_2 = 2 bits$
+
+$T = 01_2 = 2 bits$
+
+$C = 11_2 = 2 bits$
+
+$G = 10_2 = 2 bits$
+
+Then to store 1032 nucleotides, $1032 * 2 = 2064$ bits $= 258$ bytes required
+
+
+\item In the experiment, 20 metagenomic water samples were sequenced. Your task is to select a computational server for the laboratory with sufficient storage capacity to process the obtained results. It is known that for proper operation, the total hard drive capacity must be at least 2 times larger than the raw data volume. Each sample consists of two files containing paired-end reads in Fastq format. Storing a single read in this format requires four lines:
+\begin{enumerate}
+    \item[(a)] header line (10 bytes);
+    \item[(b)] read sequence line (using a four-character alphabet);
+    \item[(c)] additional information line (1 byte);
+    \item[(d)] quality score line of the same length as the read sequence (1 byte per quality character on the Phred scale).
+\end{enumerate}
+Each file contains 1 million reads, each 150 nucleotides long. Determine the minimum server storage capacity required, in gigabytes.
+
+Consider we encode each nucleotide as character i.e 1 byte per symbol, and consider we ignore newline symbols
+
+Thus, to store 1 read $10 + 150 + 1 + 150 = 311$ bytes are required
+
+To store 1 mln of reads, $311 * 10^6$ bytes are required
+
+Since each of 20 samples have 2 read files, $1244 * 10^7$ bytes $= 12.44$ gigabytes are required to store raw data
+
+Thus, at least $12.44 * 2 = 24.88$ gigabytes are required for analysis
+
+
+\item Compute:
+\begin{itemize}
+    \item \(3E_{16} \cdot 5A_{16}\)
+    \item \(100100101101_{2} + 231012_{4} + 444_{8} + FA_{16}\)
+\end{itemize}
+
+$3E_1_6 * 5A_1_6 = 62_1_0 * 90_1_0 = 5580_1_0 = 15CC_1_6$
+
+$100100101101_{2} + 231012_{4} + 444_{8} + FA_{16}$ =
+
+$1 + 2^2 + 2^3 + 2^5 + 2^8 + 2^1^1+$
+
+
+$+2+4+4^3 + 3 * 4^4 + 2 * 4^5 +$
+
+$4+32+256+$
+
+$10+15*16 = 5777_1_0$
+
+\item A natural number \(P_{10}\) is given. If it is converted to a numeral system with base \(s\), the result will have three digits and start with the digit \(1\). If it is converted to a numeral system with base \(k\), the result will be written as \(25_k\). Find the smallest possible number \(P_{10}\).
+
+$P_1_0 = 25_k = 5 + 2k; k \geq 6$
+
+$P_1_0 = 1**_s \rightarrow s^2 \leq P_1_0 < 2s^2$
+
+Consider $k = 6 \rightarrow P_1_0 = 25_6 = 17_1_0$.
+
+Consider $s = 3 \rightarrow 17_1_0 = 122_3; 9 \leq 17 < 18$
+
+Thus, smallest possible value of $P_1_0 = 17$
+
+\item A three-digit natural number \(abc_x\) is written in base \(x\). When the same digits were appended to the end of the number, the result \(abcabc_x\) turned out to be 126 times larger than the original. Determine the base of the numeral system.
+
+$abc_x = \overline{c+bx+ax^2}_{10}$
+
+$abcabc_x = \overline{c + bx + ax^2 + cx^3 + bx^4 + ax^5}_{10
+
+$126(c + bx + ax^2) = c + bx + ax^2 + cx^3 + bx^4 + ax^5$
+
+$125(c + bx + ax^2) = cx^3 + bx^4 + ax^5$
+
+$125(c + bx+ ax^2) = x^3(c+bx+ax^2)$
+
+$x^3 = 125$
+
+$x = 5$
+\item Calculate the entropy of a fair six-sided dice.
+
+$M = \{1,2,3,4,5,6\}$
+
+$P(M_i) = \frac{1}{6}$
+
+$H = - \sum_{i=1}^{M}p_i\log_2(p_i) = -6 * \frac{1}{6} * \log_2\frac{1}{6} = -\log_2\frac{1}{6} \approx 2.585$ bits
+
+
+\item The link contains an excerpt from the novella «The Little Prince». Calculate its entropy, considering only the frequency of letters of the English alphabet.\\
+\texttt{https://ctlab.itmo.ru/\textasciitilde aivanov/bi\_2026/text\_en.txt}\\
+To solve the problem, you are invited to write solution code in Python and attach the code and the obtained numerical answer rounded to three decimal places.
+
+
+
+
+\begin{verbatim}
+from math import log2
+def find_entropy(s):
+    allowed_symbols = set(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+    s = s.upper()
+    s = [i for i in s if i in allowed_symbols]
+    hashmap_p = {i: s.count(i)/len(s) for i in list(allowed_symbols)}
+    H = 0
+    for i in hashmap_p:
+        H += hashmap_p[i] * log2(hashmap_p[i]+10**-10)
+    H *= -1
+    return(round(H,3))
+\end{verbatim}
+
+\vspace{1em}
+
+\begin{verbatim}
+import urllib.request
+
+url = "https://ctlab.itmo.ru/~aivanov/bi_2026/text_en.txt"
+
+with urllib.request.urlopen(url) as response:
+    s = response.read().decode('utf-8')
+
+print(find_entropy(s))
+\end{verbatim}
+
+\vspace{1em}
+
+\begin{verbatim}
+3.966
+\end{verbatim}
+
+\end{document}
+
+
+\end{enumerate}
+\end{document}
