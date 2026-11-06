@@ -1,0 +1,308 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW7}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+\item Solve the system of linear equations using the Gaussian method.
+\[
+\begin{cases}
+  x + y - 2z = 6 \\
+  2x + 3y - 7z = 16 \\
+  5x + 2y + z = 16
+\end{cases}
+\]
+
+\begin{cases}
+x + y - 2z = 6 \\
+2x + 3y - 7z = 16\\
+5x + 2y + z = 16\\
+\end{cases}
+\rightarrow
+\begin{pmatrix}
+1 & 1 & -2 \\
+2 & 3 & -7 \\
+5 & 2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+    x\\
+    y\\
+    z
+\end{pmatrix}
+=
+\begin{pmatrix}
+6 \\
+16\\
+16
+\end{pmatrix}
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+1 & 1 & -2 & 6 \\ 
+2 & 3 & -7 & 16 \\
+5 & 2 & 1 & 16
+\end{array}
+\right]
+\rightarrow
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & -1 & 3 & -4 \\ 
+0 & 11 & -37 & 48 \\
+10 & 4 & 2 & 32
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & -4 & 4 \\ 
+0 & 11 & -37 & 48 \\
+10 & 4 & 2 & 32
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & 1 & -1 \\ 
+0 & 11 & -37 & 48 \\
+5 & 2 & 1 & 16
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & 1 & -1 \\ 
+0 & 11 & 0 & 11 \\
+5 & 2 & 1 & 16
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & 1 & -1 \\ 
+0 & 1 & 0 & 1 \\
+5 & 2 & 1 & 16
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & 1 & -1 \\ 
+0 & 1 & 0 & 1 \\
+5 & 0 & 0 & 15
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{ccc|c} 
+0 & 0 & 1 & -1 \\ 
+0 & 1 & 0 & 1 \\
+1 & 0 & 0 & 3
+\end{array}
+\right]
+
+Thus, $x = 3, y = 1, z = -1$
+
+\item Find the eigenvectors and eigenvalues of a linear operator
+\[
+A = \begin{pmatrix}
+1 & 0 & 3 \\
+2 & 1 & 2 \\
+3 & 0 & 1
+\end{pmatrix}
+\]
+
+$det(A-\lambda I) = 0$
+
+$|A-\lambda I| = $
+\left|
+\begin{array}{ccc} 
+1-\lambda & 0 & 3 \\ 
+2 & 1-\lambda & 2  \\
+3 & 0 & 1-\lambda 
+\end{array}
+\right|
+$= (1-\lambda)^3 + 3(-3(1-\lambda) = (1-\lambda)^3 - 9(1-\lambda) = (1-\lambda)(\lambda^2-2\lambda-8) = (1-\lambda)(\lambda-4)(\lambda+2)=0
+
+Thus, eigenvalues are $\lambda_1 = 1, \lambda_2 = 4, \lambda_3 = -2$
+
+
+$\lambda_1 = 1 \rightarrow (A - \lambda_1I)
+\left[
+\begin{array}{c} 
+x_1 \\ 
+x_2  \\
+x_3 
+\end{array}
+\right] = 0
+
+\left(
+\begin{array}{ccc|c} 
+0 & 0 & 3 & 0 \\ 
+2 & 0 & 2 & 0 \\
+3 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+0 & 0 & 1 & 0 \\ 
+1 & 0 & 1 & 0 \\
+1 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0
+\end{array}
+\right)
+
+Thus, $x_1 = 0, x_2 \in \mathbb{R}, x_3 = 0$
+
+If $x_2 = 1$, for $\lambda_1 = 1, v_1 = (0,1,0)$
+
+$\lambda_2 = 4 \rightarrow (A - \lambda_2I)
+\left[
+\begin{array}{c} 
+x_1 \\ 
+x_2  \\
+x_3 
+\end{array}
+\right] = 0
+
+\left(
+\begin{array}{ccc|c} 
+-3 & 0 & 3 & 0 \\ 
+2 & -3 & 2 & 0 \\
+3 & 0 & -3 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+-1 & 0 & 1 & 0 \\ 
+2 & -3 & 2 & 0 \\
+1 & 0 & -1 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+-1 & 0 & 1 & 0 \\ 
+2 & -3 & 2 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+-2 & 0 & 2 & 0 \\ 
+0 & -3 & 4 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+-1 & 0 & 1 & 0 \\ 
+0 & -3 & 4 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\begin{cases}
+-x_1 + x_3 = 0 \\
+-3x_2 + 4x_3 = 0
+\end{cases}
+\rightarrow
+\begin{cases}
+x_1 = x_3\\
+x_2 = \frac{4}{3}x_3\\
+x_3 \in \mathbb{R}
+\end{cases}
+
+If $x_3 = 1$, then for $\lambda_2 = 4$, eigenvector $v_2 = (1, \frac{4}{3},1)$
+
+$\lambda_3 = -2 \rightarrow (A - \lambda_3I)
+\left[
+\begin{array}{c} 
+x_1 \\ 
+x_2  \\
+x_3 
+\end{array}
+\right] = 0
+
+\left(
+\begin{array}{ccc|c} 
+3 & 0 & 3 & 0 \\ 
+2 & 3 & 2 & 0 \\
+3 & 0 & 3 & 0
+\end{array}
+\right)
+\rightarrow
+\left(
+\begin{array}{ccc|c} 
+1 & 0 & 1 & 0 \\ 
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right)
+\rightarrow
+\begin{cases}
+x_1 + x_3 = 0 \\
+x_2 = 0 \\
+\end{cases}
+\rightarrow
+\begin{cases}
+x_1 = - x_3 \\
+x_2 = 0 \\
+x_3 \in \mathbb{R}
+\end{cases}
+
+If $x_3 = 1$, then for $\lambda_3 = -2$, eigenvector $v_3 = (-1, 0, 1)$
+
+\item How many integers between 0 and 999 contain
+
+a) exactly one digit 7?
+
+Since there are 3 digits, and only one of them is 7, total number of integers with exactly one seven is $3*9^2 = 243$
+
+b) at least one digit 7?
+
+Since there are 1000 integers between 0 and 999 and $9^3$ integers that does not contain 7, the number of integers that contain and least one 7 is $1000 - 9^3 = 271$
+
+
+\item How many numbers less than one million can be written using the digits 8 and 9?
+
+Since the largest possible number is 999999, all integers must contain at most 6 digits.
+
+For 1 digit numbers there are $2^1$ possible numbers - 8,9
+
+For 2 digit numbers there are $2^2$ possible numbers - 88,99,89,98
+
+...
+
+For 6 digit numbers there are $2^6$ possible numbers
+
+So the total number of such integers is $2 + 2^2 + 2^3 + 2^4 + 2^5 + 2^6=126$ 
+
+
+\item How many four-digit numbers greater than 2100 can be formed from the digits
+1, 2, 3, 4, 5, 0 if no digit is repeated in the number?
+
+N of such integers = n (numbers starting with 2 and greater than 2100) + n (numbers starting with 3,4, or 5, and greater than 2100) = $(1*4*4*3) + (3*5*4*3) = 48 + 180 = 228$ 
+
+
+\end{enumerate}
+\end{document}
+
+
