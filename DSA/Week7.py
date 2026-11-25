@@ -36,7 +36,7 @@ def _():
 
             else:
                 return(arr[first_book_idx:last_book_idx+1].count(0))
-    
+
 
         for _ in range(t):
             foo = input()
@@ -87,13 +87,13 @@ def _():
             for k in range(1,k_max+1):
                 if cell_idx-k < 0:
                     break
-    
+
                 dp[cell_idx] += (dp[cell_idx-k])
 
 
         print(dp[-1])
 
-    
+
 
 
     problem_4()
@@ -185,10 +185,10 @@ def _():
             else:
                 path.appendleft(str(current_cell+1))
                 current_cell = parents[current_cell]
-    
 
 
-    
+
+
         print(dp_coins[-1])
         print(len(path)-1)
         print(' '.join(path))
@@ -202,12 +202,78 @@ def _():
     return
 
 
-app._unparsable_cell(
-    r"""
-    def problem_7()
-    """,
-    name="_"
-)
+@app.cell
+def _():
+    def problem_7():
+        MOD = 10**9 + 7
+
+        def mat_mul(A, B):
+            size = len(A)
+            C = [[0] * size for _ in range(size)]
+            for i in range(size):
+                row_a = A[i]
+            
+                row_c = C[i]
+                for k in range(size):
+                    if row_a[k] == 0:
+                    
+                        continue
+                    val = row_a[k]
+                    row_b = B[k]
+                
+                    for j in range(size):
+                        row_c[j] = (row_c[j] + val * row_b[j]) % MOD
+            return C
+
+        def mat_pow(M, power):
+            size = len(M)
+            res = [[0] * size for _ in range(size)]
+            for i in range(size):
+                res[i][i] = 1
+            while power > 0:
+                if power & 1:
+                    res = mat_mul(res, M)
+                M = mat_mul(M, M)
+                power >>= 1
+            return res
+
+        k, n = map(int, input().split())
+        f = [int(x) % MOD for x in input().split()]
+        a = [int(x) % MOD for x in input().split()]
+
+        if n < k:
+            fn = f[n]
+            s = sum(f[: n + 1]) % MOD
+            print(fn, s)
+            return
+
+        size = k + 1
+        T = [[0] * size for _ in range(size)]
+
+        T[0][0] = 1
+        for j in range(k):
+            T[0][j + 1] = a[j]
+
+        
+            T[1][j + 1] = a[j]
+
+        for i in range(2, size):
+        
+            T[i][i - 1] = 1
+
+        T_pow = mat_pow(T, n - k + 1)
+
+        V = [sum(f) % MOD] + f[::-1]
+
+        s_n = sum(T_pow[0][j] * V[j] for j in range(size)) % MOD
+    
+        f_n = sum(T_pow[1][j] * V[j] for j in range(size)) % MOD
+
+        print(f_n, s_n)
+
+    problem_7()
+
+    return
 
 
 @app.cell
@@ -233,7 +299,7 @@ def _():
       current_cell = dp.index(max_length)
 
       path = dq()
-    
+
       while current_cell != -1:
         path.appendleft(str(arr[current_cell]))
         current_cell = parents[current_cell]
@@ -243,7 +309,6 @@ def _():
 
 
     problem_8()
-
     return
 
 
