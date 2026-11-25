@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\title{Discrete Math HW8}
+\author{Anatolii Larkin}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{enumerate}
+
+
+
+\item There are 5 types of envelopes and 6 types of postage stamps. How many ways are there to send the letter if:
+    \begin{enumerate}
+        \item[a)] one envelope and one postage stamp required;
+
+        $\binom{5}{1} * \binom{6}{1} = 30  $
+        
+        \item[b)] one envelope and two different postage stamps required;
+
+        $\binom{5}{1} * \binom{6}{2} = 75$
+        
+        \item[c)] one envelope and any two postage stamps required.
+
+        $\binom{5}{1} * \binom{7}{2} = 105$
+    \end{enumerate}
+
+\item Suppose there is a community of 20 people. How many ways are there to
+choose president, vice-president, secretary and treasurer if they should be
+different people.
+
+$n = 20 * 19 * 18 * 17 = 116280$
+
+
+\item In how many ways can nine coins of different denominations be distributed
+among two distinct pockets (for example, left and right)?
+
+$n = \binom{9}{1} + \binom{9}{2}... + \binom{9}{9} = \sum_{k=0}^{9} \binom{9}{k} = 2^9 = 512$
+
+
+\item How many different arrays of length 30 are there that have 15 zeros, 10 ones
+and 5 twos?
+
+$n = \binom{30}{15} * \binom{15}{10} = 465817912560$
+
+
+\item The Dozen tribe’s alphabet has exactly 12 letters. A word in this language
+is any sequence of no more than six letters in which any two adjacent letters
+are different. How many words are there in the tribe?
+
+$n_x$ = number of words with x letters
+
+$n_1 = 12$
+
+$n_2 = 12 * 11$
+
+$n_3 = 12*11*11$
+
+$n_4 = 12 * 11^3$
+
+$n_5 = 12 * 11^4$
+
+$n_6 = 12 * 11^5$
+
+$S = n_1 + ... + n_6 = 12 * (1 + 11 + 11^2 + 11^3 + 11^4 + 11^5) = 2125872$
+
+\item Prove the formula:  \sum_{k=0}^{n} \binom{n}{k} = 2^n
+
+
+Consider statement $(a+b)^n = \sum_{k=0}^{n}\binom{n}{k} a^{n-k}*b^k$
+
+
+
+Base case:
+$n = 2 \rightarrow (a+b)^2 = (a+b)(a+b) = a^2+2ab+b^2 = \binom{2}{0}a^2 + \binom{2}{1}ab + \binom{2}{2}b^2$
+
+Assume the statement $(a+b)^x = \sum_{k=0}^{x}\binom{x}{k}a^{x-k}*b^k$ holds
+
+Therefore
+
+
+$(a+b)^{x+1} &= (a+b)\sum_{k=0}^{x} \binom{x}{k} a^{x-k} b^k \\
+&= \sum_{k=0}^{x} \binom{x}{k} a^{x-k+1} b^k + \sum_{k=0}^{x} \binom{x}{k} a^{x-k} b^{k+1} \\
+&= \sum_{k=0}^{x} \binom{x}{k} a^{x-k+1} b^k + \sum_{k=1}^{x+1} \binom{x}{k-1} a^{x-k+1} b^k \\
+&= \binom{x}{0} a^{x+1} + \sum_{k=1}^{x} \left[ \binom{x}{k} + \binom{x}{k-1} \right] a^{x-k+1} b^k + \binom{x}{x} b^{x+1} \\
+&= a^{x+1} + \sum_{k=1}^{x} \binom{x+1}{k} a^{(x+1)-k} b^k + b^{x+1} \\
+&= \sum_{k=0}^{x+1} \binom{x+1}{k} a^{(x+1)-k} b^k$
+
+
+So the statement $(a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k} holds$
+
+Therefore, $2^n = (1+1)^n = \sum_{k=0}^{n} \binom{n}{k}1^{n-k}1^{k} = \sum_{k=0}^{n}\binom{n}{k} \rightarrow$ proven
+
+\item
+
+Consider a matrix with n rows and m columns. There is a chip in the leftmost topmost cell. In each turn you can move the chip one row down or one column right. How many different paths from (1, 1) to (n, m) are there?
+
+To reach $(n,m)$ from $(1,1)$ one must pick $(n-1)$ lateral moves and $(m-1)$ vertical moves, total $n+m-2 moves$
+Out of total number of moves, one must pick $(n-1)$ lateral moves, the remaining moves will be correct horizontal moves.
+
+So number of paths from $(1,1)$ to $(n,m)$ is $\binom{n+m-2}{n-1}$
+
+
+
+\item In how many ways you can put 5 identical rooks on a 8×8 chessboard, so that
+no two rooks attack each other?
+
+For rooks to not attack each other, each rook must pick distinct row and distinct column:
+
+$n = \binom{8}{5} * \binom{8}{5} * 5! = 376320$
+
+
+\item An M&Ms pack contains from 20 to 40 candies, each candy is colored into one of 6 colors. How many different M&M’s packs are there?
+
+For the pack that contains $x$ candies, colored in 6 colors, there are $\binom{x+5}{5}$ possible packs.
+So total number of packs is $\sum_{x=20}^{40}\binom{x+5}{5} = 9189719$
+
+\item Consider a 9 × 9 field. There is a chip in the leftmost topmost cell. In each
+turn you can move the chip one row down or one column right. How many
+different paths from (1, 1) to (9, 9) not passing through the center cell (5, 5) are
+there?
+
+
+As per task 7, number of paths from $(1,1)$ to $(n,m)$ is $\binom{n+m-2}{n-1}: P(9,9) = \binom{16}{8} = 12870$
+
+Out of these, we must substract valid paths, that reach (5,5) and then reach (9,9)
+
+Since (5,5) is exactly the center of 9x9 board, $P(1,1 \rightarrow 5,5) = P(5,5 \rightarrow 9,9) = \binom{8}{4} = 70$
+
+Therefore, number of valid paths from (1,1) to (9,9) that step on (5,5) tile is 70^2 = 4900
+
+Thus, number of valid paths from (1,1) to (9,9) that don't step on (5,5) tile is $12870 - 4900 = 7970$ 
+
+
+
+\end{enumerate}
+\end{document}
